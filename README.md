@@ -1,0 +1,4 @@
+BtnNewsBundle
+=============
+
+simple news bundle
