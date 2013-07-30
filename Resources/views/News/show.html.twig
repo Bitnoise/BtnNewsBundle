@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="span5">
+        <h2>News</h2>
+        <div class="news">
+            <h3 class="title">{{ news.title }}</h3>
+            <p class="date">{{ news.createdAt|date('F jS Y') }}</p>
+            <p class="short">
+                {{ news.text|raw }}
+            </p>
+            <a href="{{ url('news') }}">Back to list</a>
+        </div>
+    </div>
+    <div class="span3">
+        <h2>Press</h2>
+    </div>
+{% endblock %}

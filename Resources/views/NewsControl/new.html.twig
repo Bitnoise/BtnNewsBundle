@@ -1,0 +1,34 @@
+{% from 'BtnCrudBundle::breadcrumb.html.twig' import breadcrumb %}
+{% extends '::control.html.twig' %}
+
+{% form_theme form 'BtnCrudBundle:Form:fields.html.twig' %}
+
+{% block content %}
+
+    <form action="{{ path('cp_news_create') }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
+          <fieldset>
+              <legend>News creation</legend>
+              {{ form_widget(form) }}
+              <p>
+                  <button type="submit" class="btn btn-success">{% trans %}crud.create{% endtrans %}</button>
+              </p>
+        </fieldset>
+    </form>
+
+            <a href="{{ path('cp_news') }}" class="btn">
+        &laquo; {% trans %}crud.back{% endtrans %}
+    </a>
+
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ breadcrumb({'cp_news': 'crud.breadcrumb.list', 'cp_news_new': 'crud.breadcrumb.new'}) }}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        '@BtnNewsBundle/Resources/public/js/*'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
