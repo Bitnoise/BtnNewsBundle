@@ -1,0 +1,3 @@
+services:
+    btn.news.content_provider:
+        class: Btn\NewsBundle\Service\NewsContentProvider
