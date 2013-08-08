@@ -24,18 +24,23 @@ class NewsContentProvider implements NodeContentProviderInterface
         return new NodeContentType();
     }
 
-    public function resolveRouteName($formData = array())
+    public function resolveRoute($formData = array())
     {
-        //resolve from request and return the route name for node in nodes tree
-
         return $formData['action'];
     }
 
-
-    public function resolveControlRouteName($formData = array())
+    public function resolveRouteParameters($formData = array())
     {
-        //resolve from request and return the route name for node in nodes tree
+        return array();
+    }
 
-        return $this->router->generate('cp_news');
+    public function resolveControlRoute($formData = array())
+    {
+        return 'cp_news';
+    }
+
+    public function resolveControlRouteParameters($formData = array())
+    {
+        return array();
     }
 }
