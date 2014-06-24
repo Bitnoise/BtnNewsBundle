@@ -58,7 +58,7 @@ class NewsCategory
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
      * @ORM\OneToMany(
-     *     targetEntity="Btn\NewsBundle\Entity\news",
+     *     targetEntity="Btn\NewsBundle\Entity\News",
      *     mappedBy="category",
      *     cascade={"persist", "remove"}
      * )
