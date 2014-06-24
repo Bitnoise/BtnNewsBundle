@@ -15,6 +15,7 @@ class NewsType extends AbstractType
             ->add('title')
             ->add('preview')
             ->add('text')
+            ->add('category')
             ->add('created_at', 'date')
         ;
     }

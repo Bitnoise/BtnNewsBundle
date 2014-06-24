@@ -52,6 +52,12 @@ class News
      */
     private $text;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="Btn\NewsBundle\Entity\NewsCategory", inversedBy="news")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $category;
+
     /**
      * @var datetime $created_at
      *
@@ -169,5 +175,28 @@ class News
     public function getCreatedAt()
     {
         return $this->created_at;
+    }
+
+    /**
+     * Set category
+     *
+     * @param  \Btn\NewsBundle\Entity\NewsCategory $category
+     * @return News
+     */
+    public function setCategory(\Btn\NewsBundle\Entity\NewsCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Btn\NewsBundle\Entity\NewsCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

@@ -3,3 +3,10 @@ services:
         class: Btn\NewsBundle\Service\NewsContentProvider
         arguments:
             router: '@router'
+    btn.newscategory.manager:
+        class: Btn\NewsBundle\Service\NewsCategoryManager
+        arguments:
+            em:          '@doctrine.orm.entity_manager'
+            paginator:   '@knp_paginator'
+            twig:        '@twig'
+            formFactory: '@form.factory'

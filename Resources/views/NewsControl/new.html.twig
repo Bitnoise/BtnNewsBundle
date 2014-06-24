@@ -7,7 +7,7 @@
 
     <form action="{{ path('cp_news_create') }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
           <fieldset>
-              <legend>News creation</legend>
+              <legend>{% trans %}news.create{% endtrans %}</legend>
               {{ form_widget(form) }}
               <p>
                   <button type="submit" class="btn btn-success">{% trans %}crud.create{% endtrans %}</button>

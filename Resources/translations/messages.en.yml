@@ -1,0 +1,29 @@
+news:
+    news: News
+    edit: News edit
+    list: News list
+    create: News creation
+    id: Id
+    slug: Slug
+    title: Title
+    preview: Preview
+    text: Text
+    category: Category
+    created_at: Created
+    updated_at: Updated
+    type_here: Type here
+    category_empty_value: Select category
+    filter_category: 'Category: '
+    filter_category_all: All
+
+news_category:
+    news_category: News Category
+    edit: News Category edit
+    list: News Category list
+    id: Id
+    title: Title
+    slug: Slug
+    visible: Visible
+    position: Position
+    create: NewsCategory creation
+

@@ -3,33 +3,41 @@
 
 {% block content %}
 
-    <h2>News</h2>
+    <h2>{% trans %}news.news{% endtrans %}</h2>
 
     <table class="table table-striped table-bordered table-condensed">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{% trans %}news.id{% endtrans %}</th>
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Slug</th>
+                <th>{% trans %}news.slug{% endtrans %}</th>
                 <td>{{ entity.slug }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>{% trans %}news.title{% endtrans %}</th>
                 <td>{{ entity.title }}</td>
             </tr>
             <tr>
-                <th>Preview</th>
+                <th>{% trans %}news.preview{% endtrans %}</th>
                 <td>{{ entity.preview }}</td>
             </tr>
             <tr>
-                <th>Text</th>
+                <th>{% trans %}news.text{% endtrans %}</th>
                 <td>{{ entity.text }}</td>
             </tr>
             <tr>
-                <th>Created_at</th>
-                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+                <th>{% trans %}news.category{% endtrans %}</th>
+                <td>{{ entity.category }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}news.created_at{% endtrans %}</th>
+                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}news.updated_at{% endtrans %}</th>
+                <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>
     </table>
