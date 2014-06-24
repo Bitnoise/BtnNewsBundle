@@ -8,10 +8,17 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class NodeContentType extends AbstractType
 {
+    private $data;
+
+    public function __construct($data = array())
+    {
+        $this->data = $data;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('action', 'choice', array('choices' => array('news' => 'News list')))
+            ->add('category', 'choice', array('choices' => $this->data))
         ;
     }
 

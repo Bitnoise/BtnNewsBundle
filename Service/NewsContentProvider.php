@@ -13,25 +13,34 @@ class NewsContentProvider implements NodeContentProviderInterface
 {
 
     private $router;
+    private $em;
 
-    public function __construct($router)
+    public function __construct($router, $em)
     {
         $this->router = $router;
+        $this->em     = $em;
     }
 
     public function getForm()
     {
-        return new NodeContentType();
+        $categories = $this->em->getRepository('BtnNewsBundle:NewsCategory')->findAll();
+
+        $data = array();
+        foreach ($categories as $category) {
+            $data[$category->getId()] = $category->getTitle();
+        }
+
+        return new NodeContentType($data);
     }
 
     public function resolveRoute($formData = array())
     {
-        return $formData['action'];
+        return 'app_news_category';
     }
 
     public function resolveRouteParameters($formData = array())
     {
-        return array();
+        return array('id' => $formData['category']);
     }
 
     public function resolveControlRoute($formData = array())
@@ -41,6 +50,6 @@ class NewsContentProvider implements NodeContentProviderInterface
 
     public function resolveControlRouteParameters($formData = array())
     {
-        return array();
+        return array('id' => $formData['category']);
     }
 }

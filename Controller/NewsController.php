@@ -52,4 +52,22 @@ class NewsController extends Controller
 
         return array('news' => $news, 'backUrl' => $backUrl);
     }
+
+    /**
+     * @Route("/news/category/{id}", name="app_news_category")
+     * @Template()
+     */
+    public function categoryAction(Request $request)
+    {
+        $categoryId = $request->get('id');
+        $news   = $this->getDoctrine()
+            ->getEntityManager()
+            ->getRepository('BtnNewsBundle:News')
+            ->findBy(
+                array('category' => $categoryId)
+            )
+        ;
+
+        return $this->render("BtnNewsBundle:News:index.html.twig", array('news' => $news));
+    }
 }
