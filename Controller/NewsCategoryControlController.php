@@ -82,7 +82,7 @@ class NewsCategoryControlController extends Controller
      *
      * @Route("/create", name="cp_newscategory_create")
      * @Method("POST")
-     * @Template("BtnNewsBundle:NewsCategory:new.html.twig")
+     * @Template("BtnNewsBundle:NewsCategoryControl:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -138,7 +138,7 @@ class NewsCategoryControlController extends Controller
      *
      * @Route("/{id}/update", name="cp_newscategory_update")
      * @Method("POST")
-     * @Template("BtnNewsBundle:NewsCategory:edit.html.twig")
+     * @Template("BtnNewsBundle:NewsCategoryControl:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {

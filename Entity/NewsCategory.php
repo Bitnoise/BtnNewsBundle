@@ -4,6 +4,7 @@ namespace Btn\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Btn\BaseBundle\Util\Text;
 
 /**
@@ -30,6 +31,7 @@ class NewsCategory
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=64, nullable=false)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -37,6 +39,7 @@ class NewsCategory
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=64, nullable=false)
+     * @Assert\NotBlank()
      */
     private $slug;
 
@@ -51,6 +54,7 @@ class NewsCategory
      * @var integer
      *
      * @ORM\Column(name="position", type="smallint", nullable=false)
+     * @Assert\NotBlank(message="Position should be a number")
      */
     private $position;
 
