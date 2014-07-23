@@ -3,6 +3,7 @@
 namespace Btn\NewsBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Btn\NewsBundle\Entity\NewsCategory;
 
 /**
  * NewsRepository
@@ -33,4 +34,27 @@ class NewsRepository extends EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Get array of last news from category
+     *
+     * @param integer $count
+     * @param integer $count
+     * @return array
+     */
+    public function getLastNewsFromCategory(NewsCategory $category, $count = null)
+    {
+        $qb = $this->createQueryBuilder('n')
+            ->where('n.category = :category')->setParameter(':category', $category)
+            ->orderBy('n.created_at', 'DESC')
+        ;
+
+        $query = $qb->getQuery();
+
+        $count = (int) $count;
+        if ($count) {
+            $query->setMaxResults($count);
+        }
+
+        return $query->getResult();
+    }
 }
