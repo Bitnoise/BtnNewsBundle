@@ -57,4 +57,24 @@ class NewsRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     *
+     */
+    public function getMontsWithYears(NewsCategory $category = null)
+    {
+        $qb = $this->createQueryBuilder('n')
+            ->select('SUBSTRING(n.created_at, 6, 2) as month, SUBSTRING(n.created_at, 1, 4) as year')
+            ->groupBy('year, month')
+            ->orderBy('n.created_at', 'DESC')
+        ;
+
+        if (null != $category) {
+            $qb->addWhere('n.category = :category')->setParameter(':category', $category);
+        }
+
+        $q = $qb->getQuery();
+
+        return $q->getResult();
+    }
 }
