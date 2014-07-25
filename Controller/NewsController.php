@@ -57,7 +57,7 @@ class NewsController extends Controller
     {
         $categoryId = $request->get('id');
         $news   = $this->getDoctrine()
-            ->getEntityManager()
+            ->getManager()
             ->getRepository('BtnNewsBundle:News')
             ->findBy(
                 array('category' => $categoryId)
