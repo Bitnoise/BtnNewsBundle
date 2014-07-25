@@ -17,7 +17,7 @@ class NewsRepository extends EntityRepository
     /**
      * Get array of last news
      *
-     * @param integer $count
+     * @param  integer $count
      * @return array
      */
     public function getLastNews($count = null)
@@ -37,8 +37,8 @@ class NewsRepository extends EntityRepository
     /**
      * Get array of last news from category
      *
-     * @param integer $count
-     * @param integer $count
+     * @param  integer $count
+     * @param  integer $count
      * @return array
      */
     public function getLastNewsFromCategory(NewsCategory $category, $count = null)

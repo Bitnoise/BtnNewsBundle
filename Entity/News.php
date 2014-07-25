@@ -67,7 +67,6 @@ class News
      */
     private $created_at;
 
-
     /**
      * Get id
      *

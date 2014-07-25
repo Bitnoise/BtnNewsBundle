@@ -91,7 +91,7 @@ class NewsCategory
     /**
      * Set title
      *
-     * @param  string      $title
+     * @param  string       $title
      * @return newsCategory
      */
     public function setTitle($title)
@@ -114,7 +114,7 @@ class NewsCategory
     /**
      * Set slug
      *
-     * @param  string      $slug
+     * @param  string       $slug
      * @return newsCategory
      */
     public function setSlug($slug)
@@ -137,7 +137,7 @@ class NewsCategory
     /**
      * Set visible
      *
-     * @param  boolean     $visible
+     * @param  boolean      $visible
      * @return newsCategory
      */
     public function setVisible($visible)
@@ -160,7 +160,7 @@ class NewsCategory
     /**
      * Set position
      *
-     * @param  integer     $position
+     * @param  integer      $position
      * @return newsCategory
      */
     public function setPosition($position)
