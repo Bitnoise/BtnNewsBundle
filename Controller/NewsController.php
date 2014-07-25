@@ -24,11 +24,7 @@ class NewsController extends Controller
         //@TODO: change this into pagination
 
         //list
-        $news = $this->getDoctrine()
-            ->getEntityManager()
-            ->getRepository('BtnNewsBundle:News')
-            ->findAll()
-        ;
+        $news = $this->getDoctrine()->getManager()->getRepository('BtnNewsBundle:News')->findAll();
 
         return array('news' => $news);
     }
