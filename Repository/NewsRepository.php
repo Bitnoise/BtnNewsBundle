@@ -61,7 +61,7 @@ class NewsRepository extends EntityRepository
     /**
      *
      */
-    public function getMontsWithYears(NewsCategory $category = null)
+    public function getMonthsWithYears(NewsCategory $category = null)
     {
         $qb = $this->createQueryBuilder('n')
             ->select('SUBSTRING(n.created_at, 6, 2) as month, SUBSTRING(n.created_at, 1, 4) as year')
