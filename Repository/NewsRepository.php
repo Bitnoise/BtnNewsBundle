@@ -13,6 +13,27 @@ use Btn\NewsBundle\Entity\NewsCategory;
  */
 class NewsRepository extends EntityRepository
 {
+    /**
+     *
+     */
+    public function getBaseQueryBuilder()
+    {
+        return $this->createQueryBuilder('n')->orderBy('n.created_at', 'DESC');
+    }
+
+    /**
+     *
+     */
+    public function getNewsForCategoryQueryBuilder(NewsCategory $category = null)
+    {
+        $qb = $this->getBaseQueryBuilder();
+
+        if ($category) {
+            $qb->where('n.category = :category')->setParameter(':category', $category);
+        }
+
+        return $qb;
+    }
 
     /**
      * Get array of last news
@@ -20,33 +41,13 @@ class NewsRepository extends EntityRepository
      * @param  integer $count
      * @return array
      */
-    public function getLastNews($count = null)
+    public function getLastNews($count = null, NewsCategory $category = null)
     {
-        $query = $this->getEntityManager()
-            ->createQuery('SELECT n FROM BtnNewsBundle:News n ORDER BY n.created_at DESC')
-        ;
+        $qb = $this->getBaseQueryBuilder();
 
-        $count = (int) $count;
-        if ($count) {
-            $query->setMaxResults($count);
+        if ($category) {
+            $qb->where('n.category = :category')->setParameter(':category', $category);
         }
-
-        return $query->getResult();
-    }
-
-    /**
-     * Get array of last news from category
-     *
-     * @param  integer $count
-     * @param  integer $count
-     * @return array
-     */
-    public function getLastNewsFromCategory(NewsCategory $category, $count = null)
-    {
-        $qb = $this->createQueryBuilder('n')
-            ->where('n.category = :category')->setParameter(':category', $category)
-            ->orderBy('n.created_at', 'DESC')
-        ;
 
         $query = $qb->getQuery();
 
@@ -63,10 +64,9 @@ class NewsRepository extends EntityRepository
      */
     public function getMonthsWithYears(NewsCategory $category = null)
     {
-        $qb = $this->createQueryBuilder('n')
+        $qb = $this->getBaseQueryBuilder()
             ->select('SUBSTRING(n.created_at, 6, 2) as month, SUBSTRING(n.created_at, 1, 4) as year')
             ->groupBy('year, month')
-            ->orderBy('n.created_at', 'DESC')
         ;
 
         if (null != $category) {
@@ -76,5 +76,21 @@ class NewsRepository extends EntityRepository
         $q = $qb->getQuery();
 
         return $q->getResult();
+    }
+
+    /**
+     *
+     */
+    public function getNewsFromYearMonthQueryBuilder($year, $month, NewsCategory $category = null)
+    {
+        $qb = $this->getBaseQueryBuilder()
+            ->where('n.created_at LIKE :date')->setParameter(':date', $year . '-' . $month . '%')
+        ;
+
+        if (null != $category) {
+            $qb->addWhere('n.category = :category')->setParameter(':category', $category);
+        }
+
+        return $qb;
     }
 }
