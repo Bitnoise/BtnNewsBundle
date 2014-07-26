@@ -3,6 +3,7 @@
 namespace Btn\NewsBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Btn\NewsBundle\Entity\News;
 use Btn\NewsBundle\Entity\NewsCategory;
 
 /**
@@ -92,5 +93,31 @@ class NewsRepository extends EntityRepository
         }
 
         return $qb;
+    }
+
+    /**
+     *
+     */
+    public function getPrevNews(News $news, NewsCategory $category = null)
+    {
+        $qb = $this->createQueryBuilder('n')
+            ->where('n.created_at < :created_at')->setParameter(':created_at', $news->getCreatedAt())
+            ->orderBy('n.created_at', 'DESC')
+        ;
+
+        return $qb->getQuery()->setMaxResults(1)->getOneOrNullResult();
+    }
+
+    /**
+     *
+     */
+    public function getNextNews(News $news, NewsCategory $category = null)
+    {
+        $qb = $this->createQueryBuilder('n')
+            ->where('n.created_at > :created_at')->setParameter(':created_at', $news->getCreatedAt())
+            ->orderBy('n.created_at', 'ASC')
+        ;
+
+        return $qb->getQuery()->setMaxResults(1)->getOneOrNullResult();
     }
 }
