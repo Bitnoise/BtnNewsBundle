@@ -8,7 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Btn\NewsBundle\Entity\News
  *
- * @ORM\Table(name="news")
+ * @ORM\Table(name="news", indexes={
+ *     @ORM\Index(name="slug_idx", columns={"slug"}),
+ *     @ORM\Index(name="created_at_idx", columns={"created_at"}),
+ * })
  * @ORM\Entity(repositoryClass="Btn\NewsBundle\Repository\NewsRepository")
  */
 class News
