@@ -26,3 +26,6 @@ news_category:
     visible: Widoczny
     position: Pozycja
     create: Dodaj kategorię News
+
+btn_newsbundle.type.news_category.empty_value: Wybierz kategorię
+btn_newsbundle.type.news_category.label: Kategoria

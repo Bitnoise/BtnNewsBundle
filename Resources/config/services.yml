@@ -12,3 +12,8 @@ services:
             paginator:   '@knp_paginator'
             twig:        '@twig'
             formFactory: '@form.factory'
+
+    btn_newsbundle.form.type.news_category:
+        class: Btn\NewsBundle\Form\Type\NewsCategoryType
+        tags:
+            - { name: form.type, alias: btn_newsbundlebundle_news_category }

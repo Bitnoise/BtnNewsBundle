@@ -26,3 +26,7 @@ news_category:
     visible: Visible
     position: Position
     create: NewsCategory creation
+
+
+btn_newsbundle.type.news_category.empty_value: Choose news category
+btn_newsbundle.type.news_category.label: News category
