@@ -8,7 +8,6 @@
         <thead>
             <tr>
                 <th>{% trans %}news.id{% endtrans %}</th>
-                <th>{% trans %}news.slug{% endtrans %}</th>
                 <th>{% trans %}news.title{% endtrans %}</th>
                 <th>{% trans %}news.category{% endtrans %}</th>
                 <th>{% trans %}news.updated_at{% endtrans %}</th>
@@ -19,7 +18,6 @@
         {% for entity in pagination %}
             <tr>
                 <td>{{ entity.id }}</td>
-                <td>{{ entity.slug }}</td>
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.category }}</td>
                 <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
