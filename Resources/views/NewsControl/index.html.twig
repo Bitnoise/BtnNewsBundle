@@ -21,7 +21,10 @@
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.category }}</td>
                 <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>    <a href="{{ path('cp_news_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>    <a href="{{ path('cp_news_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}crud.edit{% endtrans %}</a>                </td>
+                <td>
+                    <a href="{{ path('cp_news_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>
+                    <a href="{{ path('cp_news_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}crud.edit{% endtrans %}</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -29,7 +32,7 @@
 
     {{ knp_pagination_render(pagination) }}
 
-            <a href="{{ path('cp_news_new') }}" class="btn btn-primary">{% trans %}crud.create_new{% endtrans %}</a>
+    <a href="{{ path('cp_news_new') }}" class="btn btn-primary">{% trans %}crud.create_new{% endtrans %}</a>
 
 {% endblock %}
 

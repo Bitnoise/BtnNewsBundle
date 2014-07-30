@@ -15,11 +15,9 @@
         </fieldset>
     </form>
 
-            <form action="{{ path('cp_news_delete', { 'id': entity.id }) }}" method="post">
+    <form action="{{ path('cp_news_delete', { 'id': entity.id }) }}" method="post">
         {{ form_widget(delete_form) }}
-        <a href="{{ path('cp_news') }}" class="btn">
-            &laquo; {% trans %}crud.back{% endtrans %}
-        </a>
+        <a href="{{ path('cp_news') }}" class="btn btn-default">&laquo; {% trans %}crud.back{% endtrans %}</a>
         <button type="submit" data-confirmation="true" data-message="{% trans %}crud.confirm.message{% endtrans %}" data-title="{% trans %}crud.confirm.title{% endtrans %}" class="btn btn-danger">{% trans %}crud.delete{% endtrans %}</button>
     </form>
 
