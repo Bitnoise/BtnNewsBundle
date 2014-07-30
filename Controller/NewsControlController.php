@@ -38,8 +38,11 @@ class NewsControlController extends Controller
 
         $pagination->setTemplate('BtnCrudBundle:Pagination:default.html.twig');
 
+        $config = $this->container->getParameter('btn_news');
+
         return array(
-            'pagination' => $pagination,
+            'pagination'  => $pagination,
+            'list_config' => $config['control']['news']['list'],
         );
     }
 

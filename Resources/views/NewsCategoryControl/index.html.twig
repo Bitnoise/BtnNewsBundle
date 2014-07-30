@@ -24,8 +24,10 @@
                 <td>{{ entity.visible ? '<span class="glyphicon glyphicon-ok" ></span>' }}</td>
                 <td>{{ entity.position }}</td>
                 <td>
-                  <a href="{{ path('cp_newscategory_show', { 'id': entity.id }) }}" class="btn btn-sm btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>
-                  <a href="{{ path('cp_newscategory_edit', { 'id': entity.id }) }}" class="btn btn-sm btn-primary button-edit">{% trans %}crud.edit{% endtrans %}</a>
+                    {% if list_config.show_action %}
+                        <a href="{{ path('cp_newscategory_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>
+                    {% endif %}
+                    <a href="{{ path('cp_newscategory_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}crud.edit{% endtrans %}</a>
                 </td>
             </tr>
         {% endfor %}

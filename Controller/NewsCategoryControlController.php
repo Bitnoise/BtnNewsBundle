@@ -31,8 +31,11 @@ class NewsCategoryControlController extends Controller
             ->paginate(10)
         ;
 
+        $config = $this->container->getParameter('btn_news');
+
         return array(
             'pagination' => $manager->getPagination(),
+            'list_config' => $config['control']['news_category']['list'],
         );
     }
 

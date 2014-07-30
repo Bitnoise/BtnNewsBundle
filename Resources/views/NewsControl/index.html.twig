@@ -22,7 +22,9 @@
                 <td>{{ entity.category }}</td>
                 <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                    <a href="{{ path('cp_news_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>
+                    {% if list_config.show_action %}
+                        <a href="{{ path('cp_news_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>
+                    {% endif %}
                     <a href="{{ path('cp_news_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}crud.edit{% endtrans %}</a>
                 </td>
             </tr>
