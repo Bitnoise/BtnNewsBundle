@@ -23,7 +23,7 @@ class NewsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Btn\NewsBundle\Entity\News'
+            'data_class' => 'Btn\\NewsBundle\\Entity\\News',
         ));
     }
 
