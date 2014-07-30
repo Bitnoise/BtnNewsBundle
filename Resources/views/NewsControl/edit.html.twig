@@ -28,6 +28,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     {% javascripts
         '@BtnNewsBundle/Resources/public/js/*'
     %}
