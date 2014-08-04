@@ -23,13 +23,14 @@ class NewsCategoryType extends AbstractType
             ->add('position', null, array(
                 'label' => 'news_category.position',
             ))
+            ->add('save', $options['data']->getId() ? 'btn_save' : 'btn_create')
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Btn\NewsBundle\Entity\NewsCategory'
+            'data_class' => 'Btn\\NewsBundle\\Entity\\NewsCategory',
         ));
     }
 

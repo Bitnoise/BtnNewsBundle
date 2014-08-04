@@ -29,6 +29,7 @@ class NewsType extends AbstractType
             ->add('created_at', 'date', array(
                 'label' => 'news.created_at',
             ))
+            ->add('save', $options['data']->getId() ? 'btn_save' : 'btn_create')
         ;
     }
 
