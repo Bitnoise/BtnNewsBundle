@@ -27,7 +27,7 @@ class NewsCategoryControlController extends Controller
     {
         $newsClass = $this->cotainer->getParameter('btn_news.news_class');
         $repo = $this->getDoctrine()->getRepository($newsClass);
-ldd($repo);
+
         return array(
             'pagination' => $manager->getPagination(),
         );
