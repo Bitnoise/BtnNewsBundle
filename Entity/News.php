@@ -12,4 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class News extends AbstractNews
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="Btn\NewsBundle\Entity\NewsCategory", inversedBy="news")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $category;
 }

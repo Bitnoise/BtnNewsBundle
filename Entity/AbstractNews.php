@@ -17,7 +17,7 @@ abstract class AbstractNews implements NewsInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $slug
@@ -26,7 +26,7 @@ abstract class AbstractNews implements NewsInterface
      * @Assert\Regex(pattern="/^[_\-a-z0-9]+$/", message="Slug contains only digits, small letters and chars like '-', '_'")
      * @Assert\NotBlank()
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var string $title
@@ -34,27 +34,21 @@ abstract class AbstractNews implements NewsInterface
      * @ORM\Column(name="title", type="string", length=255)
      * @Assert\NotBlank()
      */
-    private $title;
+    protected $title;
 
     /**
      * @var text $preview
      *
      * @ORM\Column(name="preview", type="text", nullable=true)
      */
-    private $preview;
+    protected $preview;
 
     /**
      * @var text $text
      *
      * @ORM\Column(name="text", type="text", nullable=true)
      */
-    private $text;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Btn\NewsBundle\Entity\NewsCategory", inversedBy="news")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private $category;
+    protected $text;
 
     /**
      * @var datetime $created_at
@@ -62,7 +56,7 @@ abstract class AbstractNews implements NewsInterface
      * @ORM\Column(name="created_at", type="datetime")
      * @Assert\NotBlank()
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * Get id

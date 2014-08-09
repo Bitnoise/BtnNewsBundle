@@ -19,7 +19,7 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -27,7 +27,7 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
      * @ORM\Column(name="title", type="string", length=64, nullable=false)
      * @Assert\NotBlank()
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
@@ -36,14 +36,14 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
      * @Assert\Regex(pattern="/^[_\-a-z0-9]+$/")
      * @Assert\NotBlank(message="Slug contains only digits, small letters and chars like '-', '_'")
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="visible", type="boolean", nullable=false)
      */
-    private $visible = false;
+    protected $visible = false;
 
     /**
      * @var integer
@@ -51,18 +51,7 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
      * @ORM\Column(name="position", type="smallint", nullable=false)
      * @Assert\NotBlank(message="Position should be a number")
      */
-    private $position;
-
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     *
-     * @ORM\OneToMany(
-     *     targetEntity="Btn\NewsBundle\Entity\News",
-     *     mappedBy="category",
-     *     cascade={"persist", "remove"}
-     * )
-     */
-    private $news;
+    protected $position;
 
     /**
      *
