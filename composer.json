@@ -18,9 +18,8 @@
         "gedmo/doctrine-extensions": "*"
     },
     "autoload": {
-        "psr-0": { "Btn\\NewsBundle": "" }
+        "psr-4": { "Btn\\NewsBundle\\": "" }
     },
-    "target-dir": "Btn/NewsBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.0-dev"
