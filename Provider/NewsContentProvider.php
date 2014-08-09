@@ -1,19 +1,17 @@
 <?php
 
-namespace Btn\NewsBundle\Service;
+namespace Btn\NewsBundle\Provider;
 
 use Btn\NodesBundle\Service\NodeContentProviderInterface;
 use Btn\NewsBundle\Form\NodeContentType;
 
 /**
-*
-*
-*/
+ *
+ */
 class NewsContentProvider implements NodeContentProviderInterface
 {
-
-    private $router;
-    private $em;
+    protected $router;
+    protected $em;
 
     public function __construct($router, $em)
     {

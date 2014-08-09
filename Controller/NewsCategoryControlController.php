@@ -13,7 +13,7 @@ use Btn\NewsBundle\Form\NewsCategoryType;
 /**
  * NewsCategory controller.
  *
- * @Route("/control/newscategory")
+ * @Route("/newscategory")
  */
 class NewsCategoryControlController extends Controller
 {
@@ -25,17 +25,11 @@ class NewsCategoryControlController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $manager = $this->get('btn.newscategory.manager')
-            ->setRequest($request)
-            ->setNs('control_newscategory')
-            ->paginate(10)
-        ;
-
-        $config = $this->container->getParameter('btn_news');
-
+        $newsClass = $this->cotainer->getParameter('btn_news.news_class');
+        $repo = $this->getDoctrine()->getRepository($newsClass);
+ldd($repo);
         return array(
             'pagination' => $manager->getPagination(),
-            'list_config' => $config['control']['news_category']['list'],
         );
     }
 

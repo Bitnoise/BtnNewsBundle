@@ -1,0 +1,7 @@
+_btn_news_routing_control_controller_news:
+    resource: "@BtnAdminBundle/Controller/NewsControlController.php"
+    type:     annotation
+
+_btn_news_routing_control_controller_news_category:
+    resource: "@BtnAdminBundle/Controller/NewsCategoryControlController.php"
+    type:     annotation

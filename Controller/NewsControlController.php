@@ -13,7 +13,7 @@ use Btn\NewsBundle\Form\NewsType;
 /**
  * News controller.
  *
- * @Route("/control/news")
+ * @Route("/news")
  */
 class NewsControlController extends Controller
 {

@@ -22,39 +22,11 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('control')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->arrayNode('news')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->arrayNode('list')
-                                    ->addDefaultsIfNotSet()
-                                    ->children()
-                                        ->booleanNode('show_action')->defaultTrue()->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                        ->arrayNode('news_category')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->arrayNode('list')
-                                    ->addDefaultsIfNotSet()
-                                    ->children()
-                                        ->booleanNode('show_action')->defaultTrue()->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
+                ->scalarNode('news_class')->cannotBeEmpty()->defaultValue('Btn\\NewsBundle\\Entity\\News')->end()
+                ->scalarNode('news_category_class')->cannotBeEmpty()->defaultValue('Btn\\NewsBundle\\Entity\\NewsCategory')->end()
             ->end()
         ;
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
         return $treeBuilder;
     }
 }

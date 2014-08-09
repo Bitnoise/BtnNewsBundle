@@ -14,12 +14,16 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "2.*",
+        "bitnoise/admin-bundle": "2.0.*",
         "gedmo/doctrine-extensions": "*"
     },
     "autoload": {
         "psr-0": { "Btn\\NewsBundle": "" }
     },
-    "target-dir": "Btn/NewsBundle"
+    "target-dir": "Btn/NewsBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
 }

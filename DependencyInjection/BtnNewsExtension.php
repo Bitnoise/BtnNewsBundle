@@ -22,9 +22,14 @@ class BtnNewsExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('btn_news', $config);
+        $container->setParameter('btn_news.news_class', $config['news_class']);
+        $container->setParameter('btn_news.news_category_class', $config['news_category_class']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        if ($container->hasDefinition('btn_nodes.content_providers')) {
+            $loader->load('nodes-cp.yml');
+        }
     }
 }

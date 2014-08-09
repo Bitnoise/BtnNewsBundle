@@ -1,11 +1,6 @@
 services:
-    btn.news.content_provider:
-        class: Btn\NewsBundle\Service\NewsContentProvider
-        arguments:
-            router: '@router'
-            em:     '@doctrine.orm.entity_manager'
 
-    btn.newscategory.manager:
+    btn_news.newscategory.manager:
         class: Btn\NewsBundle\Service\NewsCategoryManager
         arguments:
             em:          '@doctrine.orm.entity_manager'
@@ -13,7 +8,7 @@ services:
             twig:        '@twig'
             formFactory: '@form.factory'
 
-    btn_newsbundle.form.type.news_category:
+    btn_news.form.type.news_category:
         class: Btn\NewsBundle\Form\Type\NewsCategoryType
         tags:
-            - { name: form.type, alias: btn_newsbundlebundle_news_category }
+            - { name: form.type, alias: btn_news_news_category }
