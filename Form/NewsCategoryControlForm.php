@@ -23,7 +23,7 @@ class NewsCategoryType extends AbstractForm
             ->add('position', null, array(
                 'label' => 'news_category.position',
             ))
-            ->add('save', $options['data']->getId() ? 'btn_admin_save_button' : 'btn_admin_create_button')
+            ->add('save', $options['data']->getId() ? 'btn_save' : 'btn_create')
         ;
     }
 
