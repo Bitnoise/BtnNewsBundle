@@ -30,7 +30,7 @@
                 <td>{{ entity.category }}</td>
                 <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td class="{{ lst.col_act_class }}">
-                    {{ lnk.edit('cp_news_edit', { id: entity.id }) }}
+                    {{ lnk.edit('btn_news_newscontrol_edit', { id: entity.id }) }}
                 </td>
             </tr>
         {% endfor %}
@@ -43,5 +43,5 @@
 {% endblock %}
 
 {% block list_buttons %}
-    {{ lnk.add('cp_news_new') }}
+    {{ lnk.add('btn_news_newscontrol_new') }}
 {% endblock %}

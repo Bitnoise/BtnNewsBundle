@@ -15,12 +15,12 @@
 
     {{ lnk.back('btn_news_newscontrol_index') }}
 
-    {{ lnk.delete('cp_news_delete', { id: entity.id }) }}
+    {{ lnk.delete('btn_news_newscontrol_delete', { id: entity.id }) }}
 
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'btn_news_newscontrol_index': 'btn_admin.list', 'cp_news_edit': 'btn_admin.edit'}) }}
+    {{ breadcrumb({'btn_news_newscontrol_index': 'btn_admin.list', 'btn_news_newscontrol_edit': 'btn_admin.edit'}) }}
 {% endblock %}
 
 {% block javascripts %}

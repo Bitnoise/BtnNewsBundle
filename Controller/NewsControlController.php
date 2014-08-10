@@ -36,8 +36,8 @@ class NewsControlController extends AbstractControlController
     }
 
     /**
-     * @Route("/new", name="cp_news_new", methods={"GET"})
-     * @Route("/create", name="cp_news_create", methods={"POST"})
+     * @Route("/new", name="btn_news_newscontrol_new", methods={"GET"})
+     * @Route("/create", name="btn_news_newscontrol_create", methods={"POST"})
      * @Template()
      */
     public function createAction(Request $request)
@@ -45,13 +45,13 @@ class NewsControlController extends AbstractControlController
         $entity = $this->getEntityProvider()->create();
 
         $form = $this->createForm('btn_news_form_news_control', $entity, array(
-            'action' => $this->generateUrl('cp_news_create'),
+            'action' => $this->generateUrl('btn_news_newscontrol_create'),
         ));
 
         if ($this->handleForm($form, $request)) {
             $this->setFlash('btn_admin.flash.created');
 
-            return $this->redirect($this->generateUrl('cp_news_edit', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('btn_news_newscontrol_edit', array('id' => $entity->getId())));
         }
 
         return array(
@@ -61,8 +61,8 @@ class NewsControlController extends AbstractControlController
     }
 
     /**
-     * @Route("/{id}/edit", name="cp_news_edit", methods={"GET"})
-     * @Route("/{id}/update", name="cp_news_update", methods={"POST"}))
+     * @Route("/{id}/edit", name="btn_news_newscontrol_edit", methods={"GET"})
+     * @Route("/{id}/update", name="btn_news_newscontrol_update", methods={"POST"}))
      * @Template()
      */
     public function updateAction(Request $request, $id)
@@ -70,13 +70,13 @@ class NewsControlController extends AbstractControlController
         $entity = $this->findEntityOr404($this->getEntityProvider()->getClass(), $id);
 
         $form = $this->createForm('btn_news_form_news_control', $entity, array(
-            'action' => $this->generateUrl('cp_news_update', array('id' => $id)),
+            'action' => $this->generateUrl('btn_news_newscontrol_update', array('id' => $id)),
         ));
 
         if ($this->handleForm($form, $request)) {
             $this->setFlash('btn_admin.flash.updated');
 
-            return $this->redirect($this->generateUrl('cp_news_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('btn_news_newscontrol_edit', array('id' => $id)));
         }
 
         return array(
@@ -86,11 +86,11 @@ class NewsControlController extends AbstractControlController
     }
 
     /**
-     * @Route("/{id}/delete/{csrf_token}", name="cp_news_delete")
+     * @Route("/{id}/delete/{csrf_token}", name="btn_news_newscontrol_delete")
      */
     public function deleteAction(Request $request, $id, $csrf_token)
     {
-        $this->validateCsrfTokenOrThrowException('cp_news_delete', $csrf_token);
+        $this->validateCsrfTokenOrThrowException('btn_news_newscontrol_delete', $csrf_token);
 
         $entityProvider = $this->getEntityProvider();
         $entity         = $this->findEntityOr404($id, $entityProvider->getClass());
