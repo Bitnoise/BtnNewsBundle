@@ -4,24 +4,23 @@ namespace Btn\NewsBundle\Provider;
 
 use Btn\NodesBundle\Service\NodeContentProviderInterface;
 use Btn\NewsBundle\Form\NodeContentType;
+use Btn\AdminBundle\Provider\EntityProviderInterface;
 
 /**
  *
  */
-class NewsContentProvider implements NodeContentProviderInterface
+class NodeContentProvider implements NodeContentProviderInterface
 {
-    protected $router;
-    protected $em;
+    protected $provider;
 
-    public function __construct($router, $em)
+    public function __construct(EntityProviderInterface $provider)
     {
-        $this->router = $router;
-        $this->em     = $em;
+        $this->provider = $provider;
     }
 
     public function getForm()
     {
-        $categories = $this->em->getRepository('BtnNewsBundle:NewsCategory')->findAll();
+        $categories = $this->provider->getRepository()->findAll();
 
         $data = array();
         foreach ($categories as $category) {

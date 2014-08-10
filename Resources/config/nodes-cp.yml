@@ -1,6 +1,0 @@
-services:
-    btn_news.content_provider:
-        class: Btn\NewsBundle\Service\NewsContentProvider
-        arguments:
-            router: @router
-            em:     @doctrine.orm.entity_manager
