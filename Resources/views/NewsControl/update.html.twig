@@ -6,13 +6,11 @@
 
 {% block content %}
 
-    {{ form_start(form) }}
-
+    <form action="{{ form.vars.action }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
         <fieldset>
             <legend>{% trans %}btn_news.edit{% endtrans %}</legend>
             {{ form_widget(form) }}
         </fieldset>
-
     {{ form_end(form) }}
 
     {{ lnk.back('btn_news_newscontrol_index') }}

@@ -2,22 +2,20 @@
 {% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
 {% extends 'BtnAdminBundle::base.html.twig' %}
 
-{% form_theme edit_form 'BtnAdminBundle:Form:fields.html.twig' %}
+{% form_theme form 'BtnAdminBundle:Form:fields.html.twig' %}
 
 {% block content %}
 
-    <form action="{{ path('cp_newscategory_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="well form-horizontal" novalidate role="form">
+    <form action="{{ form.vars.action }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
         <fieldset>
-            <legend>{% trans %}news_category.edit{% endtrans %}</legend>
-            {{ form_widget(edit_form) }}
+            <legend>{% trans %}btn_news.news_category.edit{% endtrans %}</legend>
+            {{ form_widget(form) }}
         </fieldset>
-    </form>
+    {{ form_end(form) }}
 
-    <form action="{{ path('cp_newscategory_delete', { 'id': entity.id }) }}" method="post">
-        {{ form_widget(delete_form) }}
-        <a href="{{ path('cp_newscategory') }}" class="btn">&laquo; {% trans %}btn_admin.back{% endtrans %}</a>
-        <button type="submit" data-confirmation="true" data-message="{% trans %}crud.confirm.message{% endtrans %}" data-title="{% trans %}crud.confirm.title{% endtrans %}" class="btn btn-danger">{% trans %}btn_admin.delete{% endtrans %}</button>
-    </form>
+    {{ lnk.back('btn_news_newscategorycontrol_index') }}
+
+    {{ lnk.delete('btn_news_newscategorycontrol_delete', { id: entity.id }) }}
 
 {% endblock %}
 
