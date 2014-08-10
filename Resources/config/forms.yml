@@ -1,0 +1,6 @@
+services:
+
+    btn_news.form.type.news_category:
+        class: Btn\NewsBundle\Form\Type\NewsCategoryType
+        tags:
+            - { name: form.type, alias: btn_news_news_category }
