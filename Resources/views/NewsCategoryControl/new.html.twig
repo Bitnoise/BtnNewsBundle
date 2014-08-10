@@ -1,7 +1,7 @@
 {% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb %}
 {% extends 'BtnAdminBundle::base.html.twig' %}
 
-{% form_theme form 'BtnCrudBundle:Form:fields.html.twig' %}
+{% form_theme form 'BtnAdminBundle:Form:fields.html.twig' %}
 
 {% block content %}
 
@@ -17,5 +17,5 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'cp_newscategory': 'crud.breadcrumb.list', 'cp_newscategory_new': 'crud.breadcrumb.new'}) }}
+    {{ breadcrumb({'cp_newscategory': 'btn_admin.list', 'cp_newscategory_new': 'btn_admin.new'}) }}
 {% endblock %}
