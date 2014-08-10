@@ -14,7 +14,7 @@
                 <th>{% trans %}news.title{% endtrans %}</th>
                 <th>{% trans %}news.category{% endtrans %}</th>
                 <th>{% trans %}news.updated_at{% endtrans %}</th>
-                <th class="{{ lst.col_act_class() }}">{% trans %}btn_admin.actions{% endtrans %}</th>
+                <th class="{{ lst.col_act_class }}">{% trans %}btn_admin.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.category }}</td>
                 <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td class="{{ lst.col_act_class() }}">
+                <td class="{{ lst.col_act_class }}">
                     {{ lnk.show('cp_news_show', { id: entity.id }) }}
                     {{ lnk.edit('cp_news_edit', { id: entity.id }) }}
                 </td>
