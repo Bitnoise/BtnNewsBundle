@@ -2,11 +2,11 @@
 
 namespace Btn\NewsBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
+use Btn\AdminBundle\Form\AbstractForm;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class NewsCategoryType extends AbstractType
+class NewsCategoryType extends AbstractForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -27,15 +27,8 @@ class NewsCategoryType extends AbstractType
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Btn\\NewsBundle\\Entity\\NewsCategory',
-        ));
-    }
-
     public function getName()
     {
-        return 'btn_newsbundle_newscategory';
+        return 'btn_news_newscategory_form';
     }
 }

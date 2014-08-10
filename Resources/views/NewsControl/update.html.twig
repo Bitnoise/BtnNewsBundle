@@ -1,0 +1,33 @@
+{% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb %}
+{% import 'BtnAdminBundle:_macros:link.html.twig' as lnk %}
+{% extends 'BtnAdminBundle::base.html.twig' %}
+
+{% block content %}
+
+    {{ form_start(form) }}
+
+        <fieldset>
+            <legend>{% trans %}btn_news.edit{% endtrans %}</legend>
+            {{ form_widget(form) }}
+        </fieldset>
+
+    {{ form_end(form) }}
+
+    {{ lnk.back('btn_news_newscontrol_index') }}
+
+    {{ lnk.delete('cp_news_delete', { id: entity.id }) }}
+
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ breadcrumb({'btn_news_newscontrol_index': 'btn_admin.list', 'cp_news_edit': 'btn_admin.edit'}) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@BtnNewsBundle/Resources/public/js/*'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

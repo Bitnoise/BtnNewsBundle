@@ -22,10 +22,11 @@ class BtnNewsExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('btn_news.news_class', $config['news_class']);
-        $container->setParameter('btn_news.news_category_class', $config['news_category_class']);
+        $container->setParameter('btn_news.news.class', $config['news_class']);
+        $container->setParameter('btn_news.news_category.class', $config['news_category_class']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('parameters.yml');
         $loader->load('services.yml');
         $loader->load('forms.yml');
 

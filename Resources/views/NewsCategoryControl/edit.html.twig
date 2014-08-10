@@ -14,12 +14,12 @@
 
     <form action="{{ path('cp_newscategory_delete', { 'id': entity.id }) }}" method="post">
         {{ form_widget(delete_form) }}
-        <a href="{{ path('cp_newscategory') }}" class="btn">&laquo; {% trans %}crud.back{% endtrans %}</a>
-        <button type="submit" data-confirmation="true" data-message="{% trans %}crud.confirm.message{% endtrans %}" data-title="{% trans %}crud.confirm.title{% endtrans %}" class="btn btn-danger">{% trans %}crud.delete{% endtrans %}</button>
+        <a href="{{ path('cp_newscategory') }}" class="btn">&laquo; {% trans %}btn_admin.back{% endtrans %}</a>
+        <button type="submit" data-confirmation="true" data-message="{% trans %}crud.confirm.message{% endtrans %}" data-title="{% trans %}crud.confirm.title{% endtrans %}" class="btn btn-danger">{% trans %}btn_admin.delete{% endtrans %}</button>
     </form>
 
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'cp_newscategory': 'btn_admin.list', 'cp_newscategory_edit': 'crud.breadcrumb.edit'}) }}
+    {{ breadcrumb({'cp_newscategory': 'btn_admin.list', 'cp_newscategory_edit': 'btn_admin.edit'}) }}
 {% endblock %}

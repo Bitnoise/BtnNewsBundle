@@ -1,32 +1,29 @@
-news:
-    news: News
-    edit: News edit
-    list: News list
-    create: News creation
-    id: Id
-    slug: Slug
-    title: Title
-    preview: Preview
-    text: Text
-    category: Category
-    created_at: Created
-    updated_at: Updated
-    type_here: Type here
-    category_empty_value: Select category
-    filter_category: 'Category: '
-    filter_category_all: All
+btn_news.news: News
+btn_news.edit: News edit
+btn_news.list: News list
+btn_news.create: News creation
+btn_news.id: Id
+btn_news.slug: Slug
+btn_news.title: Title
+btn_news.preview: Preview
+btn_news.text: Text
+btn_news.category: Category
+btn_news.created_at: Created
+btn_news.updated_at: Updated
+btn_news.type_here: Type here
+btn_news.category_empty_value: Select category
+btn_news.filter_category: 'Category: '
+btn_news.filter_category_all: All
 
-news_category:
-    news_category: News Category
-    edit: News Category edit
-    list: News Category list
-    id: Id
-    title: Title
-    slug: Slug
-    visible: Visible
-    position: Position
-    create: NewsCategory creation
+news_category.news_category: News Category
+news_category.edit: News Category edit
+news_category.list: News Category list
+news_category.id: Id
+news_category.title: Title
+news_category.slug: Slug
+news_category.visible: Visible
+news_category.position: Position
+news_category.create: NewsCategory creation
 
-
-btn_newsbundle.type.news_category.empty_value: Choose news category
-btn_newsbundle.type.news_category.label: News category
+btn_news.type.news_category.empty_value: Choose news category
+btn_news.type.news_category.label: News category

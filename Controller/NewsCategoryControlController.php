@@ -3,19 +3,16 @@
 namespace Btn\NewsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Btn\BaseBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Btn\NewsBundle\Entity\NewsCategory;
 use Btn\NewsBundle\Form\NewsCategoryType;
 
 /**
- * NewsCategory controller.
- *
  * @Route("/newscategory")
  */
-class NewsCategoryControlController extends Controller
+class NewsCategoryControlController extends AbstractController
 {
     /**
      * Lists all NewsCategory entities.
@@ -25,9 +22,8 @@ class NewsCategoryControlController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $newsClass = $this->container->getParameter('btn_news.news_category_class');
-        $entities = $em->getRepository($newsClass)->findAll();
+        $repo = $this->get('btn_news.provider.news_category')->getRepository();
+        $entities = $repo->findAll();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -49,9 +45,8 @@ class NewsCategoryControlController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BtnNewsBundle:NewsCategory')->find($id);
+        $repo = $this->get('btn_news.provider.news_category')->getRepository();
+        $entity = $repo->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find NewsCategory entity.');
@@ -73,7 +68,8 @@ class NewsCategoryControlController extends Controller
      */
     public function newAction()
     {
-        $entity = new NewsCategory();
+        $provider = $this->get('btn_news.provider.news_category');
+        $entity = $provider->createEntity();
         $form   = $this->createForm(new NewsCategoryType(), $entity);
 
         return array(
@@ -91,7 +87,8 @@ class NewsCategoryControlController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity  = new NewsCategory();
+        $provider = $this->get('btn_news.provider.news_category');
+        $entity = $provider->createEntity();
         $form = $this->createForm(new NewsCategoryType(), $entity);
         $form->bind($request);
 
@@ -100,7 +97,7 @@ class NewsCategoryControlController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $msg = $this->get('translator')->trans('crud.flash.saved');
+            $msg = $this->get('translator')->trans('btn_admin.flash.saved');
             $this->getRequest()->getSession()->getFlashBag()->set('success', $msg);
 
             return $this->redirect($this->generateUrl('cp_newscategory_show', array('id' => $entity->getId())));
@@ -120,9 +117,8 @@ class NewsCategoryControlController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BtnNewsBundle:NewsCategory')->find($id);
+        $repo = $this->get('btn_news.provider.news_category')->getRepository();
+        $entity = $repo->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find NewsCategory entity.');
@@ -147,9 +143,8 @@ class NewsCategoryControlController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BtnNewsBundle:NewsCategory')->find($id);
+        $repo = $this->get('btn_news.provider.news_category')->getRepository();
+        $entity = $repo->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find NewsCategory entity.');
@@ -163,7 +158,7 @@ class NewsCategoryControlController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $msg = $this->get('translator')->trans('crud.flash.saved');
+            $msg = $this->get('translator')->trans('btn_admin.flash.saved');
             $this->getRequest()->getSession()->getFlashBag()->set('success', $msg);
 
             return $this->redirect($this->generateUrl('cp_newscategory_edit', array('id' => $id)));
@@ -198,7 +193,7 @@ class NewsCategoryControlController extends Controller
             $em->remove($entity);
             $em->flush();
 
-            $msg = $this->get('translator')->trans('crud.flash.deleted');
+            $msg = $this->get('translator')->trans('btn_admin.flash.deleted');
             $this->getRequest()->getSession()->getFlashBag()->set('success', $msg);
         }
 

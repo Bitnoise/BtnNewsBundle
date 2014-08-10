@@ -1,6 +1,16 @@
 services:
 
-    btn_news.form.type.news_category:
-        class: Btn\NewsBundle\Form\Type\NewsCategoryType
+    btn_news.form.news_control:
+        class: %btn_news.form.news_control.class%
+        calls:
+            - [setClass, ['%btn_news.news.class%']]
         tags:
-            - { name: form.type, alias: btn_news_news_category }
+            - { name: form.type, alias: btn_news_form_news_control }
+
+    btn_news.form.type.news_category:
+        class: %btn_news.form.type.news_category.class%
+        calls:
+            - [setClass, ['%btn_news.news_category.class%']]
+            # - [setEntityManager, ['@doctrine.orm.entity_manager']]
+        tags:
+            - { name: form.type, alias: btn_newscategory }

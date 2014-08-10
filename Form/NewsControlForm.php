@@ -2,46 +2,39 @@
 
 namespace Btn\NewsBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
+use Btn\AdminBundle\Form\AbstractForm;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class NewsType extends AbstractType
+class NewsControlForm extends AbstractForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('slug', null, array(
-                'label' => 'news.slug',
+                'label' => 'btn_news.slug',
             ))
             ->add('title', null, array(
-                'label' => 'news.title',
+                'label' => 'btn_news.title',
             ))
             ->add('preview', null, array(
-                'label' => 'news.preview',
+                'label' => 'btn_news.preview',
             ))
             ->add('text', null, array(
-                'label' => 'news.text',
+                'label' => 'btn_news.text',
             ))
-            ->add('category', null, array(
-                'label' => 'news.category',
+            ->add('category', 'btn_newscategory', array(
+                'label' => 'btn_news.category',
             ))
             ->add('created_at', 'date', array(
-                'label' => 'news.created_at',
+                'label' => 'btn_news.created_at',
             ))
             ->add('save', $options['data']->getId() ? 'btn_admin_save_button' : 'btn_admin_create_button')
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Btn\\NewsBundle\\Entity\\News',
-        ));
-    }
-
     public function getName()
     {
-        return 'btn_newsbundle_newstype';
+        return 'btn_news_form_news_control';
     }
 }

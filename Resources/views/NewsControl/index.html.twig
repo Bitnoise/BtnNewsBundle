@@ -1,19 +1,24 @@
 {% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb as bc %}
 {% import 'BtnAdminBundle:_macros:link.html.twig' as lnk %}
 {% import 'BtnAdminBundle:_macros:list.html.twig' as lst %}
-{% extends 'BtnAdminBundle::base.html.twig' %}
+{% extends 'BtnAdminBundle::list.html.twig' %}
 
-{% block content %}
+{% block breadcrumb %}
+    {{ bc({'btn_news_newscontrol_index': 'btn_admin.list'}) }}
+{% endblock %}
 
-    {{ lst.header('news.list') }}
+{% block list_header %}
+    {{ lst.header('btn_news.list') }}
+{% endblock %}
 
+{% block list_table %}
     <table class="{{ lst.table_class() }}">
         <thead>
             <tr>
-                <th class="{{ lst.col_id_class() }}">{% trans %}news.id{% endtrans %}</th>
-                <th>{% trans %}news.title{% endtrans %}</th>
-                <th>{% trans %}news.category{% endtrans %}</th>
-                <th>{% trans %}news.updated_at{% endtrans %}</th>
+                <th class="{{ lst.col_id_class() }}">{% trans %}btn_news.id{% endtrans %}</th>
+                <th>{% trans %}btn_news.title{% endtrans %}</th>
+                <th>{% trans %}btn_news.category{% endtrans %}</th>
+                <th>{% trans %}btn_news.updated_at{% endtrans %}</th>
                 <th class="{{ lst.col_act_class }}">{% trans %}btn_admin.actions{% endtrans %}</th>
             </tr>
         </thead>
@@ -25,20 +30,18 @@
                 <td>{{ entity.category }}</td>
                 <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td class="{{ lst.col_act_class }}">
-                    {{ lnk.show('cp_news_show', { id: entity.id }) }}
                     {{ lnk.edit('cp_news_edit', { id: entity.id }) }}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    {{ knp_pagination_render(pagination) }}
-
-    {{ lnk.add('cp_news_new') }}
-
 {% endblock %}
 
-{% block breadcrumb %}
-    {{ bc({'cp_news': 'btn_admin.list'}) }}
+{% block list_pagination %}
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}
+
+{% block list_buttons %}
+    {{ lnk.add('cp_news_new') }}
 {% endblock %}

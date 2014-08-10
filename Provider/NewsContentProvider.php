@@ -43,7 +43,7 @@ class NewsContentProvider implements NodeContentProviderInterface
 
     public function resolveControlRoute($formData = array())
     {
-        return 'cp_news';
+        return 'btn_news_newscontrol_index';
     }
 
     public function resolveControlRouteParameters($formData = array())

@@ -1,23 +1,24 @@
 {% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb %}
+{% import 'BtnAdminBundle:_macros:link.html.twig' as lnk %}
 {% extends 'BtnAdminBundle::base.html.twig' %}
-
-{% form_theme form 'BtnAdminBundle:Form:fields.html.twig' %}
 
 {% block content %}
 
-    <form action="{{ path('cp_news_create') }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
+    {{ form_start(form) }}
+
           <fieldset>
-              <legend>{% trans %}news.create{% endtrans %}</legend>
+              <legend>{% trans %}btn_news.create{% endtrans %}</legend>
               {{ form_widget(form) }}
         </fieldset>
-    </form>
 
-    <a href="{{ path('cp_news') }}" class="btn btn-default">&laquo; {% trans %}crud.back{% endtrans %}</a>
+    {{ form_end(form) }}
+
+    {{ lnk.back('btn_news_newscontrol_index') }}
 
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'cp_news': 'btn_admin.list', 'cp_news_new': 'btn_admin.new'}) }}
+    {{ breadcrumb({'btn_news_newscontrol_index': 'btn_admin.list', 'cp_news_new': 'btn_admin.new'}) }}
 {% endblock %}
 
 {% block javascripts %}

@@ -1,10 +1,12 @@
 services:
 
-    btn_news.newscategory.manager:
-        class: Btn\NewsBundle\Service\NewsCategoryManager
-        arguments:
-            em:          '@doctrine.orm.entity_manager'
-            paginator:   '@knp_paginator'
-            twig:        '@twig'
-            formFactory: '@form.factory'
+    btn_news.provider.news:
+        class: %btn_admin.provider.entity.class%
+        parent: btn_admin.provider.abstract_entity
+        arguments: ['%btn_news.news.class%']
+
+    btn_news.provider.news_category:
+        class: %btn_admin.provider.entity.class%
+        parent: btn_admin.provider.abstract_entity
+        arguments: ['%btn_news.news_category.class%']
 

@@ -3,37 +3,31 @@
 namespace Btn\NewsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Btn\BaseBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Btn\NewsBundle\Entity\News;
-use Btn\NewsBundle\Form\NewsType;
 
 /**
- * News controller.
- *
  * @Route("/news")
  */
-class NewsControlController extends Controller
+class NewsControlController extends AbstractController
 {
     /**
-     * Lists all News entities.
-     *
-     * @Route("/", name="cp_news")
+     * @Route("/", name="btn_news_newscontrol_index")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('BtnNewsBundle:News')->findAll();
+        $perPage  = $this->container->getParameter('btn_admin.per_page');
+        $repo     = $this->get('btn_news.provider.news')->getRepository();
+        $entities = $repo->findAll();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $entities,
-            $this->get('request')->query->get('page', 1),
-            10
+            $request->query->getInt('page', 1),
+            $perPage
         );
 
         return array(
@@ -42,68 +36,25 @@ class NewsControlController extends Controller
     }
 
     /**
-     * Finds and displays a News entity.
-     *
-     * @Route("/{id}/show", name="cp_news_show")
+     * @Route("/new", name="cp_news_new", methods={"GET"})
+     * @Route("/create", name="cp_news_create", methods={"POST"})
      * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BtnNewsBundle:News')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Displays a form to create a new News entity.
-     *
-     * @Route("/new", name="cp_news_new")
-     * @Template()
-     */
-    public function newAction()
-    {
-        $entity = new News();
-        $form   = $this->createForm(new NewsType(), $entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Creates a new News entity.
-     *
-     * @Route("/create", name="cp_news_create")
-     * @Method("POST")
-     * @Template("BtnNewsBundle:NewsControl:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity  = new News();
-        $form = $this->createForm(new NewsType(), $entity);
-        $form->bind($request);
+        $entityProvider = $this->get('btn_news.provider.news');
+        $formHandler    = $this->get('btn_admin.form_handler');
+        $entity         = $entityProvider->create();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+        $form = $this->createForm('btn_news_form_news_control', $entity, array(
+            'action' => $this->generateUrl('cp_news_create'),
+        ));
 
-            $msg = $this->get('translator')->trans('crud.flash.saved');
-            $this->get('session')->getFlashBag()->add('success', $msg);
 
-            return $this->redirect($this->generateUrl('cp_news_show', array('id' => $entity->getId())));
+        if ($formHandler->handle($form)) {
+            $this->setFlash('btn_admin.flash.created');
+
+            return $this->redirect($this->generateUrl('cp_news_edit', array('id' => $entity->getId())));
         }
 
         return array(
@@ -113,103 +64,46 @@ class NewsControlController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing News entity.
-     *
-     * @Route("/{id}/edit", name="cp_news_edit")
+     * @Route("/{id}/edit", name="cp_news_edit", methods={"GET"})
+     * @Route("/{id}/update", name="cp_news_update", methods={"POST"}))
      * @Template()
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BtnNewsBundle:News')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
-        }
-
-        $editForm = $this->createForm(new NewsType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Edits an existing News entity.
-     *
-     * @Route("/{id}/update", name="cp_news_update")
-     * @Method("POST")
-     * @Template("BtnNewsBundle:NewsControl:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $entityProvider = $this->get('btn_news.provider.news');
+        $formHandler    = $this->get('btn_admin.form_handler');
+        $entity         = $this->findEntityOr404($entityProvider->getClass(), $id);
 
-        $entity = $em->getRepository('BtnNewsBundle:News')->find($id);
+        $form = $this->createForm('btn_news_form_news_control', $entity, array(
+            'action' => $this->generateUrl('cp_news_update', array('id' => $id)),
+        ));
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new NewsType(), $entity);
-        $editForm->bind($request);
-
-        if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
-
-            $msg = $this->get('translator')->trans('crud.flash.saved');
-            $this->get('session')->getFlashBag()->add('success', $msg);
+        if ($formHandler->handle($form)) {
+            $this->setFlash('btn_admin.flash.updated');
 
             return $this->redirect($this->generateUrl('cp_news_edit', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity' => $entity,
+            'form'   => $form->createView(),
         );
     }
 
     /**
-     * Deletes a News entity.
-     *
-     * @Route("/{id}/delete", name="cp_news_delete")
-     * @Method("POST")
+     * @Route("/{id}/delete/{csrf_token}", name="cp_news_delete")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $id, $csrf_token)
     {
-        $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $this->validateCsrfTokenOrThrowException('cp_news_delete', $csrf_token);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BtnNewsBundle:News')->find($id);
+        $entityProvider = $this->get('btn_news.provider.news');
+        $entity         = $this->findEntityOr404($id, $entityProvider->getClass());
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find News entity.');
-            }
+        $entityProvider->delete($entity);
 
-            $em->remove($entity);
-            $em->flush();
+        $this->setFlash('btn_admin.flash.deleted');
 
-            $msg = $this->get('translator')->trans('crud.flash.deleted');
-            $this->get('session')->getFlashBag()->add('success', $msg);
-        }
-
-        return $this->redirect($this->generateUrl('cp_news'));
-    }
-
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
+        return $this->redirect($this->generateUrl('btn_news_newscontrol_index'));
     }
 }
