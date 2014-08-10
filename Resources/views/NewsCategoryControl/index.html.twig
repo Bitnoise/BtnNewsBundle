@@ -1,13 +1,18 @@
-{% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb as bc %}
+{% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb %}
 {% from 'BtnAdminBundle:Macros:icon.html.twig' import glyphicon as gi %}
 {% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
 {% import 'BtnAdminBundle:Macros:list.html.twig' as lst %}
-{% extends 'BtnAdminBundle::base.html.twig' %}
+{% extends 'BtnAdminBundle::list.html.twig' %}
 
-{% block content %}
+{% block breadcrumb %}
+    {{ breadcrumb({'btn_news_newscategorycontrol_index': 'btn_admin.list'}) }}
+{% endblock %}
 
+{% block list_header %}
     {{ lst.header('btn_news.list') }}
+{% endblock %}
 
+{% block list_table %}
     <table class="{{ lst.table_class() }}">
         <thead>
             <tr>
@@ -32,13 +37,12 @@
         {% endfor %}
         </tbody>
     </table>
-
-    {{ knp_pagination_render(pagination) }}
-
-    {{ lnk.add('btn_news_newscategorycontrol_new') }}
-
 {% endblock %}
 
-{% block breadcrumb %}
-    {{ bc({'btn_news_newscategorycontrol_index': 'btn_admin.list'}) }}
+{% block list_pagination %}
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}
+
+{% block list_buttons %}
+    {{ lnk.add('btn_news_newscategorycontrol_new') }}
 {% endblock %}

@@ -1,10 +1,10 @@
-{% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb as bc %}
+{% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb %}
 {% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
 {% import 'BtnAdminBundle:Macros:list.html.twig' as lst %}
 {% extends 'BtnAdminBundle::list.html.twig' %}
 
 {% block breadcrumb %}
-    {{ bc({'btn_news_newscontrol_index': 'btn_admin.list'}) }}
+    {{ breadcrumb({'btn_news_newscontrol_index': 'btn_admin.list'}) }}
 {% endblock %}
 
 {% block list_header %}
