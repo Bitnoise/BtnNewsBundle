@@ -1,33 +1,33 @@
-{% from 'BtnCrudBundle::breadcrumb.html.twig' import breadcrumb %}
-{% extends '::control.html.twig' %}
+{% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb as bc %}
+{% from 'BtnAdminBundle:_macros:icon.html.twig' import glyphicon as gi %}
+{% import 'BtnAdminBundle:_macros:link.html.twig' as lnk %}
+{% import 'BtnAdminBundle:_macros:list.html.twig' as lst %}
+{% extends 'BtnAdminBundle::base.html.twig' %}
 
 {% block content %}
-    <h2>{% trans %}news_category.list{% endtrans %}</h2>
 
-    <table class="table table-striped table-bordered table-condensed">
+    {{ lst.header('news.list') }}
+
+    <table class="{{ lst.table_class() }}">
         <thead>
             <tr>
-                <th class="btn-control-column-id" >{% trans %}news_category.id{% endtrans %}</th>
+                <th class="{{ lst.col_id_class() }}">{% trans %}news_category.id{% endtrans %}</th>
                 <th>{% trans %}news_category.title{% endtrans %}</th>
                 <th>{% trans %}news_category.slug{% endtrans %}</th>
                 <th>{% trans %}news_category.visible{% endtrans %}</th>
-                <th>{% trans %}news_category.position{% endtrans %}</th>
-                <th>{% trans %}crud.actions{% endtrans %}</th>
+                <th class="{{ lst.col_act_class() }}">{% trans %}btn_admin.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in pagination %}
             <tr>
-                <td class="btn-control-column-id" >{{ entity.id }}</td>
+                <td class="{{ lst.col_id_class() }}" >{{ entity.id }}</td>
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.slug }}</td>
-                <td>{{ entity.visible ? '<span class="glyphicon glyphicon-ok" ></span>' }}</td>
-                <td>{{ entity.position }}</td>
-                <td>
-                    {% if list_config.show_action %}
-                        <a href="{{ path('cp_newscategory_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>
-                    {% endif %}
-                    <a href="{{ path('cp_newscategory_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}crud.edit{% endtrans %}</a>
+                <td>{{ entity.visible ? gi('ok') : gi('remove') }}</td>
+                <td class="{{ lst.col_act_class() }}">
+                    {{ lnk.show('cp_newscategory_show', {id: entity.id }) }}
+                    {{ lnk.edit('cp_newscategory_edit', {id: entity.id }) }}
                 </td>
             </tr>
         {% endfor %}
@@ -36,10 +36,10 @@
 
     {{ knp_pagination_render(pagination) }}
 
-    <a href="{{ path('cp_newscategory_new') }}" class="btn btn-primary">{% trans %}crud.create_new{% endtrans %}</a>
+    {{ lnk.add('cp_newscategory_new') }}
 
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'cp_newscategory': 'crud.breadcrumb.list'}) }}
+    {{ bc({'cp_newscategory': 'crud.breadcrumb.list'}) }}
 {% endblock %}

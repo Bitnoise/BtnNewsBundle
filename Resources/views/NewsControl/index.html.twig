@@ -1,31 +1,32 @@
-{% from 'BtnCrudBundle::breadcrumb.html.twig' import breadcrumb %}
-{% extends '::control.html.twig' %}
+{% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb as bc %}
+{% import 'BtnAdminBundle:_macros:link.html.twig' as lnk %}
+{% import 'BtnAdminBundle:_macros:list.html.twig' as lst %}
+{% extends 'BtnAdminBundle::base.html.twig' %}
 
 {% block content %}
-    <h2>{{ 'news.list'|trans }}</h2>
 
-    <table class="table table-striped table-bordered table-condensed">
+    {{ lst.header('news.list') }}
+
+    <table class="{{ lst.table_class() }}">
         <thead>
             <tr>
-                <th class="btn-control-column-id">{% trans %}news.id{% endtrans %}</th>
+                <th class="{{ lst.col_id_class() }}">{% trans %}news.id{% endtrans %}</th>
                 <th>{% trans %}news.title{% endtrans %}</th>
                 <th>{% trans %}news.category{% endtrans %}</th>
                 <th>{% trans %}news.updated_at{% endtrans %}</th>
-                <th>{% trans %}crud.actions{% endtrans %}</th>
+                <th class="{{ lst.col_act_class() }}">{% trans %}btn_admin.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in pagination %}
             <tr>
-                <td class="btn-control-column-id">{{ entity.id }}</td>
+                <td class="{{ lst.col_id_class() }}">{{ entity.id }}</td>
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.category }}</td>
                 <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    {% if list_config.show_action %}
-                        <a href="{{ path('cp_news_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>
-                    {% endif %}
-                    <a href="{{ path('cp_news_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}crud.edit{% endtrans %}</a>
+                <td class="{{ lst.col_act_class() }}">
+                    {{ lnk.show('cp_news_show', { id: entity.id }) }}
+                    {{ lnk.edit('cp_news_edit', { id: entity.id }) }}
                 </td>
             </tr>
         {% endfor %}
@@ -34,10 +35,10 @@
 
     {{ knp_pagination_render(pagination) }}
 
-    <a href="{{ path('cp_news_new') }}" class="btn btn-primary">{% trans %}crud.create_new{% endtrans %}</a>
+    {{ lnk.add('cp_news_new') }}
 
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'cp_news': 'crud.breadcrumb.list'}) }}
+    {{ bc({'cp_news': 'crud.breadcrumb.list'}) }}
 {% endblock %}

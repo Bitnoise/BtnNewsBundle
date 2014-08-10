@@ -25,11 +25,19 @@ class NewsCategoryControlController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $newsClass = $this->cotainer->getParameter('btn_news.news_class');
-        $repo = $this->getDoctrine()->getRepository($newsClass);
+        $em = $this->getDoctrine()->getManager();
+        $newsClass = $this->container->getParameter('btn_news.news_category_class');
+        $entities = $em->getRepository($newsClass)->findAll();
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1),
+            10
+        );
 
         return array(
-            'pagination' => $manager->getPagination(),
+            'pagination' => $pagination,
         );
     }
 
