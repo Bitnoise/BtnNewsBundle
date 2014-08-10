@@ -3,104 +3,55 @@
 namespace Btn\NewsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Btn\BaseBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Btn\AdminBundle\Controller\AbstractControlController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Btn\NewsBundle\Form\NewsCategoryType;
+use Btn\AdminBundle\Annotation\EntityProvider;
 
 /**
  * @Route("/newscategory")
+ * @EntityProvider("btn_news.provider.news_category")
  */
-class NewsCategoryControlController extends AbstractController
+class NewsCategoryControlController extends AbstractControlController
 {
     /**
-     * Lists all NewsCategory entities.
-     *
-     * @Route("/", name="cp_newscategory")
+     * @Route("/", name="btn_news_newscategorycontrol_index")
      * @Template()
      */
     public function indexAction(Request $request)
     {
-        $repo = $this->get('btn_news.provider.news_category')->getRepository();
+        $repo     = $this->getEntityProvider()->getRepository();
         $entities = $repo->findAll();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $entities,
-            $this->get('request')->query->get('page', 1),
-            10
+            $request->query->getInt('page', 1),
+            $this->getPerPage()
         );
 
         return array(
-            'pagination' => $pagination,
+            'pagination'  => $pagination,
         );
     }
 
     /**
-     * Finds and displays a NewsCategory entity.
-     *
-     * @Route("/{id}/show", name="cp_newscategory_show")
+     * @Route("/new", name="btn_news_newscategorycontrol_new", methods={"GET"})
+     * @Route("/create", name="btn_news_newscategorycontrol_create", methods={"POST"})
      * @Template()
-     */
-    public function showAction($id)
-    {
-        $repo = $this->get('btn_news.provider.news_category')->getRepository();
-        $entity = $repo->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find NewsCategory entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Displays a form to create a new NewsCategory entity.
-     *
-     * @Route("/new", name="cp_newscategory_new")
-     * @Template()
-     */
-    public function newAction()
-    {
-        $provider = $this->get('btn_news.provider.news_category');
-        $entity = $provider->createEntity();
-        $form   = $this->createForm(new NewsCategoryType(), $entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Creates a new NewsCategory entity.
-     *
-     * @Route("/create", name="cp_newscategory_create")
-     * @Method("POST")
-     * @Template("BtnNewsBundle:NewsCategoryControl:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $provider = $this->get('btn_news.provider.news_category');
-        $entity = $provider->createEntity();
-        $form = $this->createForm(new NewsCategoryType(), $entity);
-        $form->bind($request);
+        $entity = $this->getEntityProvider()->create();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+        $form = $this->createForm('btn_news_form_newscategorycontrol', $entity, array(
+            'action' => $this->generateUrl('btn_news_newscategorycontrol_create'),
+        ));
 
-            $msg = $this->get('translator')->trans('btn_admin.flash.saved');
-            $this->getRequest()->getSession()->getFlashBag()->set('success', $msg);
+        if ($this->handleForm($form, $request)) {
+            $this->setFlash('btn_admin.flash.created');
 
-            return $this->redirect($this->generateUrl('cp_newscategory_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('btn_news_newscategorycontrol_edit', array('id' => $entity->getId())));
         }
 
         return array(
@@ -110,101 +61,44 @@ class NewsCategoryControlController extends AbstractController
     }
 
     /**
-     * Displays a form to edit an existing NewsCategory entity.
-     *
-     * @Route("/{id}/edit", name="cp_newscategory_edit")
+     * @Route("/{id}/edit", name="btn_news_newscategorycontrol_edit", methods={"GET"})
+     * @Route("/{id}/update", name="btn_news_newscategorycontrol_update", methods={"POST"}))
      * @Template()
-     */
-    public function editAction($id)
-    {
-        $repo = $this->get('btn_news.provider.news_category')->getRepository();
-        $entity = $repo->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find NewsCategory entity.');
-        }
-
-        $editForm = $this->createForm(new NewsCategoryType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Edits an existing NewsCategory entity.
-     *
-     * @Route("/{id}/update", name="cp_newscategory_update")
-     * @Method("POST")
-     * @Template("BtnNewsBundle:NewsCategoryControl:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
-        $repo = $this->get('btn_news.provider.news_category')->getRepository();
-        $entity = $repo->find($id);
+        $entity = $this->findEntityOr404($this->getEntityProvider()->getClass(), $id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find NewsCategory entity.');
-        }
+        $form = $this->createForm('btn_news_form_newscategorycontrol', $entity, array(
+            'action' => $this->generateUrl('btn_news_newscategorycontrol_update', array('id' => $id)),
+        ));
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new NewsCategoryType(), $entity);
-        $editForm->bind($request);
+        if ($this->handleForm($form, $request)) {
+            $this->setFlash('btn_admin.flash.updated');
 
-        if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
-
-            $msg = $this->get('translator')->trans('btn_admin.flash.saved');
-            $this->getRequest()->getSession()->getFlashBag()->set('success', $msg);
-
-            return $this->redirect($this->generateUrl('cp_newscategory_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('btn_news_newscategorycontrol_edit', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity' => $entity,
+            'form'   => $form->createView(),
         );
     }
 
     /**
-     * Deletes a NewsCategory entity.
-     *
-     * @Route("/{id}/delete", name="cp_newscategory_delete")
-     * @Method("POST")
+     * @Route("/{id}/delete/{csrf_token}", name="btn_news_newscategorycontrol_delete")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $id, $csrf_token)
     {
-        $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $this->validateCsrfTokenOrThrowException('btn_news_newscategorycontrol_delete', $csrf_token);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BtnNewsBundle:NewsCategory')->find($id);
+        $entityProvider = $this->getEntityProvider();
+        $entity         = $this->findEntityOr404($id, $entityProvider->getClass());
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find NewsCategory entity.');
-            }
+        $entityProvider->delete($entity);
 
-            $em->remove($entity);
-            $em->flush();
+        $this->setFlash('btn_admin.flash.deleted');
 
-            $msg = $this->get('translator')->trans('btn_admin.flash.deleted');
-            $this->getRequest()->getSession()->getFlashBag()->set('success', $msg);
-        }
-
-        return $this->redirect($this->generateUrl('cp_newscategory'));
-    }
-
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
+        return $this->redirect($this->generateUrl('btn_news_newscategorycontrol_index'));
     }
 }

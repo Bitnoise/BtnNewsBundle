@@ -1,3 +1,4 @@
 parameters:
     btn_news.form.news_control.class: Btn\NewsBundle\Form\NewsControlForm
+    btn_news.form.news_category_control.class: Btn\NewsBundle\Form\NewsCategoryControlForm
     btn_news.form.type.news_category.class: Btn\NewsBundle\Form\Type\NewsCategoryType

@@ -15,15 +15,15 @@ btn_news.category_empty_value: Select category
 btn_news.filter_category: 'Category: '
 btn_news.filter_category_all: All
 
-news_category.news_category: News Category
-news_category.edit: News Category edit
-news_category.list: News Category list
-news_category.id: Id
-news_category.title: Title
-news_category.slug: Slug
-news_category.visible: Visible
-news_category.position: Position
-news_category.create: NewsCategory creation
+btn_news.news_category.news_category: News Category
+btn_news.news_category.edit: News Category edit
+btn_news.news_category.list: News Category list
+btn_news.news_category.id: Id
+btn_news.news_category.title: Title
+btn_news.news_category.slug: Slug
+btn_news.news_category.visible: Visible
+btn_news.news_category.position: Position
+btn_news.news_category.create: NewsCategory creation
 
 btn_news.type.news_category.empty_value: Choose news category
 btn_news.type.news_category.label: News category

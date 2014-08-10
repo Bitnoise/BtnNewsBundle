@@ -1,12 +1,12 @@
-{% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb as bc %}
-{% from 'BtnAdminBundle:_macros:icon.html.twig' import glyphicon as gi %}
-{% import 'BtnAdminBundle:_macros:link.html.twig' as lnk %}
-{% import 'BtnAdminBundle:_macros:list.html.twig' as lst %}
+{% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb as bc %}
+{% from 'BtnAdminBundle:Macros:icon.html.twig' import glyphicon as gi %}
+{% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
+{% import 'BtnAdminBundle:Macros:list.html.twig' as lst %}
 {% extends 'BtnAdminBundle::base.html.twig' %}
 
 {% block content %}
 
-    {{ lst.header('news.list') }}
+    {{ lst.header('btn_news.list') }}
 
     <table class="{{ lst.table_class() }}">
         <thead>
@@ -26,8 +26,7 @@
                 <td>{{ entity.slug }}</td>
                 <td>{{ entity.visible ? gi('ok') : gi('remove') }}</td>
                 <td class="{{ lst.col_act_class }}">
-                    {{ lnk.show('cp_newscategory_show', {id: entity.id }) }}
-                    {{ lnk.edit('cp_newscategory_edit', {id: entity.id }) }}
+                    {{ lnk.edit('btn_news_newscategorycontrol_edit', {id: entity.id }) }}
                 </td>
             </tr>
         {% endfor %}
@@ -36,10 +35,10 @@
 
     {{ knp_pagination_render(pagination) }}
 
-    {{ lnk.add('cp_newscategory_new') }}
+    {{ lnk.add('btn_news_newscategorycontrol_new') }}
 
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ bc({'cp_newscategory': 'btn_admin.list'}) }}
+    {{ bc({'btn_news_newscategorycontrol_index': 'btn_admin.list'}) }}
 {% endblock %}

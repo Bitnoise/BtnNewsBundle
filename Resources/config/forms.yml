@@ -7,6 +7,13 @@ services:
         tags:
             - { name: form.type, alias: btn_news_form_news_control }
 
+    btn_news.form.news_category_control:
+        class: %btn_news.form.news_category_control.class%
+        calls:
+            - [setClass, ['%btn_news.news_category.class%']]
+        tags:
+            - { name: form.type, alias: btn_news_form_newscategorycontrol }
+
     btn_news.form.type.news_category:
         class: %btn_news.form.type.news_category.class%
         calls:

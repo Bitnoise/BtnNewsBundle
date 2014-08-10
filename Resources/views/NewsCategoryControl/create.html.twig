@@ -1,0 +1,22 @@
+{% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb %}
+{% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
+{% extends 'BtnAdminBundle::base.html.twig' %}
+
+{% form_theme form 'BtnAdminBundle:Form:fields.html.twig' %}
+
+{% block content %}
+
+    {{ form_start(form) }}
+          <fieldset>
+              <legend>{% trans %}btn_news.news_category.create{% endtrans %}</legend>
+              {{ form_widget(form) }}
+        </fieldset>
+    {{ form_end(form) }}
+
+    {{ lnk.back('btn_news_newscategorycontrol_index') }}
+
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ breadcrumb({'btn_news_newscategorycontrol_index': 'btn_admin.list', 'btn_news_newscategorycontrol_new': 'btn_admin.new'}) }}
+{% endblock %}

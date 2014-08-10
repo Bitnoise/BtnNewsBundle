@@ -11,16 +11,16 @@ class NewsCategoryControlForm extends AbstractForm
     {
         $builder
             ->add('title', null, array(
-                'label' => 'news_category.title',
+                'label' => 'btn_news.news_category.title',
             ))
             ->add('slug', null, array(
-                'label' => 'news_category.slug',
+                'label' => 'btn_news.news_category.slug',
             ))
             ->add('visible', null, array(
-                'label' => 'news_category.visible',
+                'label' => 'btn_news.news_category.visible',
             ))
             ->add('position', null, array(
-                'label' => 'news_category.position',
+                'label' => 'btn_news.news_category.position',
             ))
             ->add('save', $options['data']->getId() ? 'btn_save' : 'btn_create')
         ;
@@ -28,6 +28,6 @@ class NewsCategoryControlForm extends AbstractForm
 
     public function getName()
     {
-        return 'btn_news_newscategory_form';
+        return 'btn_news_form_newscategorycontrol';
     }
 }
