@@ -9,4 +9,3 @@ services:
         class: %btn_admin.provider.entity.class%
         parent: btn_admin.provider.abstract_entity
         arguments: ['%btn_news.news_category.class%']
-

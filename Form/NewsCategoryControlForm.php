@@ -4,9 +4,8 @@ namespace Btn\NewsBundle\Form;
 
 use Btn\AdminBundle\Form\AbstractForm;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class NewsCategoryType extends AbstractForm
+class NewsCategoryControlForm extends AbstractForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

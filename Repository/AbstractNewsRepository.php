@@ -4,7 +4,7 @@ namespace Btn\NewsBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Btn\NewsBundle\Entity\News;
-use Btn\NewsBundle\Entity\NewsCategory;
+use Btn\NewsBundle\Entity\NewsCategoryInterface;
 
 /**
  *
@@ -22,7 +22,7 @@ abstract class AbstractNewsRepository extends EntityRepository
     /**
      *
      */
-    public function getNewsForCategoryQueryBuilder(NewsCategory $category = null)
+    public function getNewsForCategoryQueryBuilder(NewsCategoryInterface $category = null)
     {
         $qb = $this->getBaseQueryBuilder();
 
@@ -39,7 +39,7 @@ abstract class AbstractNewsRepository extends EntityRepository
      * @param  integer $count
      * @return array
      */
-    public function getLastNews($count = null, NewsCategory $category = null)
+    public function getLastNews($count = null, NewsCategoryInterface $category = null)
     {
         $qb = $this->getBaseQueryBuilder();
 
@@ -60,7 +60,7 @@ abstract class AbstractNewsRepository extends EntityRepository
     /**
      *
      */
-    public function getMonthsWithYears(NewsCategory $category = null)
+    public function getMonthsWithYears(NewsCategoryInterface $category = null)
     {
         $qb = $this->getBaseQueryBuilder()
             ->select('SUBSTRING(n.created_at, 6, 2) as month, SUBSTRING(n.created_at, 1, 4) as year')
@@ -79,7 +79,7 @@ abstract class AbstractNewsRepository extends EntityRepository
     /**
      *
      */
-    public function getNewsFromYearMonthQueryBuilder($year, $month, NewsCategory $category = null)
+    public function getNewsFromYearMonthQueryBuilder($year, $month, NewsCategoryInterface $category = null)
     {
         $qb = $this->getBaseQueryBuilder()
             ->where('n.created_at LIKE :date')->setParameter(':date', $year . '-' . $month . '%')
@@ -95,7 +95,7 @@ abstract class AbstractNewsRepository extends EntityRepository
     /**
      *
      */
-    public function getPrevNews(News $news, NewsCategory $category = null)
+    public function getPrevNews(NewsInterface $news, NewsCategoryInterface $category = null)
     {
         $qb = $this->createQueryBuilder('n')
             ->where('n.created_at < :created_at')->setParameter(':created_at', $news->getCreatedAt())
@@ -108,7 +108,7 @@ abstract class AbstractNewsRepository extends EntityRepository
     /**
      *
      */
-    public function getNextNews(News $news, NewsCategory $category = null)
+    public function getNextNews(NewsInterface $news, NewsCategoryInterface $category = null)
     {
         $qb = $this->createQueryBuilder('n')
             ->where('n.created_at > :created_at')->setParameter(':created_at', $news->getCreatedAt())

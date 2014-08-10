@@ -4,7 +4,6 @@ namespace Btn\NewsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Btn\AdminBundle\Controller\AbstractControlController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Btn\AdminBundle\Annotation\EntityProvider;

@@ -4,7 +4,6 @@ namespace Btn\NewsBundle\Form;
 
 use Btn\AdminBundle\Form\AbstractForm;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class NewsControlForm extends AbstractForm
 {
