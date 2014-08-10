@@ -22,8 +22,18 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('news_class')->cannotBeEmpty()->defaultValue('Btn\\NewsBundle\\Entity\\News')->end()
-                ->scalarNode('news_category_class')->cannotBeEmpty()->defaultValue('Btn\\NewsBundle\\Entity\\NewsCategory')->end()
+                ->arrayNode('news')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('class')->cannotBeEmpty()->defaultValue('Btn\\NewsBundle\\Entity\\News')->end()
+                    ->end()
+                ->end()
+                ->arrayNode('news_category')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('class')->cannotBeEmpty()->defaultValue('Btn\\NewsBundle\\Entity\\NewsCategory')->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 
