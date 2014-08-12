@@ -36,8 +36,8 @@ class NewsControlController extends AbstractControlController
     }
 
     /**
-     * @Route("/new", name="btn_news_newscontrol_new", methods={"GET"})
-     * @Route("/create", name="btn_news_newscontrol_create", methods={"POST"})
+     * @Route("/new", name="btn_news_newscontrol_new", requirements={"id" = "\d+"}, methods={"GET"})
+     * @Route("/create", name="btn_news_newscontrol_create", requirements={"id" = "\d+"}, methods={"POST"})
      * @Template()
      */
     public function createAction(Request $request)
@@ -61,8 +61,8 @@ class NewsControlController extends AbstractControlController
     }
 
     /**
-     * @Route("/{id}/edit", name="btn_news_newscontrol_edit", methods={"GET"})
-     * @Route("/{id}/update", name="btn_news_newscontrol_update", methods={"POST"}))
+     * @Route("/{id}/edit", name="btn_news_newscontrol_edit", requirements={"id" = "\d+"}, methods={"GET"})
+     * @Route("/{id}/update", name="btn_news_newscontrol_update", requirements={"id" = "\d+"}, methods={"POST"}))
      * @Template()
      */
     public function updateAction(Request $request, $id)
@@ -86,7 +86,7 @@ class NewsControlController extends AbstractControlController
     }
 
     /**
-     * @Route("/{id}/delete/{csrf_token}", name="btn_news_newscontrol_delete")
+     * @Route("/{id}/delete/{csrf_token}", name="btn_news_newscontrol_delete", requirements={"id" = "\d+"}, methods={"GET"})
      */
     public function deleteAction(Request $request, $id, $csrf_token)
     {
