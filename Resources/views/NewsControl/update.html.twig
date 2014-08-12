@@ -2,8 +2,6 @@
 {% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
 {% extends 'BtnAdminBundle::base.html.twig' %}
 
-{% form_theme form 'BtnAdminBundle:Form:fields.html.twig' %}
-
 {% block content %}
 
     <form action="{{ form.vars.action }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
