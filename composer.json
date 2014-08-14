@@ -15,7 +15,6 @@
     ],
     "require": {
         "bitnoise/admin-bundle": "2.0.*",
-        "gedmo/doctrine-extensions": "*"
     },
     "autoload": {
         "psr-0": { "Btn\\NewsBundle": "" }
