@@ -171,7 +171,7 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
      */
     public function addNews(\Btn\NewsBundle\Entity\News $news)
     {
-        $this->newss[] = $newss;
+        $this->news[] = $news;
 
         return $this;
     }
@@ -183,7 +183,7 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
      */
     public function removeNews(\Btn\NewsBundle\Entity\News $news)
     {
-        $this->newss->removeElement($newss);
+        $this->news->removeElement($news);
     }
 
     /**
@@ -193,7 +193,7 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
      */
     public function getNews()
     {
-        return $this->newss;
+        return $this->news;
     }
 
     /**
