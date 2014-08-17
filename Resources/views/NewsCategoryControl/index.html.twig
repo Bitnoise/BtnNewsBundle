@@ -1,48 +1,14 @@
-{% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb %}
-{% from 'BtnAdminBundle:Macros:icon.html.twig' import glyphicon as gi %}
-{% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
-{% import 'BtnAdminBundle:Macros:list.html.twig' as lst %}
-{% extends 'BtnAdminBundle::list.html.twig' %}
+{% from 'BtnAdminBundle:Macros:icon.html.twig' import gi %}
+{% extends 'BtnAdminBundle:BaseCrud:index.html.twig' %}
 
-{% block breadcrumb %}
-    {{ breadcrumb({'btn_news_newscategorycontrol_index': 'btn_admin.list'}) }}
+{% block list_table_head_columns %}
+    <th>{% trans %}btn_news.news_category.title{% endtrans %}</th>
+    <th>{% trans %}btn_news.news_category.slug{% endtrans %}</th>
+    <th>{% trans %}btn_news.news_category.visible{% endtrans %}</th>
 {% endblock %}
 
-{% block list_header %}
-    {{ lst.header('btn_news.list') }}
-{% endblock %}
-
-{% block list_table %}
-    <table class="{{ lst.table_class() }}">
-        <thead>
-            <tr>
-                <th class="{{ lst.col_id_class() }}">{% trans %}btn_news.news_category.id{% endtrans %}</th>
-                <th>{% trans %}btn_news.news_category.title{% endtrans %}</th>
-                <th>{% trans %}btn_news.news_category.slug{% endtrans %}</th>
-                <th>{% trans %}btn_news.news_category.visible{% endtrans %}</th>
-                <th class="{{ lst.col_act_class }}">{% trans %}btn_admin.actions{% endtrans %}</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in pagination %}
-            <tr>
-                <td class="{{ lst.col_id_class() }}" >{{ entity.id }}</td>
-                <td>{{ entity.title }}</td>
-                <td>{{ entity.slug }}</td>
-                <td>{{ entity.visible ? gi('ok') : gi('remove') }}</td>
-                <td class="{{ lst.col_act_class }}">
-                    {{ lnk.edit('btn_news_newscategorycontrol_edit', {id: entity.id }) }}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
-
-{% block list_pagination %}
-    {{ knp_pagination_render(pagination) }}
-{% endblock %}
-
-{% block list_buttons %}
-    {{ lnk.add('btn_news_newscategorycontrol_new') }}
+{% block list_table_body_columns %}
+    <td>{{ entity.title }}</td>
+    <td>{{ entity.slug }}</td>
+    <td>{{ entity.visible ? gi('ok') : gi('remove') }}</td>
 {% endblock %}

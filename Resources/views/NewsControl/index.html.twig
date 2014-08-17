@@ -1,47 +1,17 @@
-{% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb %}
-{% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
-{% import 'BtnAdminBundle:Macros:list.html.twig' as lst %}
-{% extends 'BtnAdminBundle::list.html.twig' %}
+{% extends 'BtnAdminBundle:BaseCrud:index.html.twig' %}
 
-{% block breadcrumb %}
-    {{ breadcrumb({'btn_news_newscontrol_index': 'btn_admin.list'}) }}
+{% block list_table_head_columns %}
+    <th>{% trans %}btn_news.news.title{% endtrans %}</th>
+    <th>{% trans %}btn_news.news.category{% endtrans %}</th>
+    <th>{% trans %}btn_news.news.created_at{% endtrans %}</th>
 {% endblock %}
 
-{% block list_header %}
-    {{ lst.header('btn_news.list') }}
-{% endblock %}
-
-{% block list_table %}
-    <table class="{{ lst.table_class() }}">
-        <thead>
-            <tr>
-                <th class="{{ lst.col_id_class() }}">{% trans %}btn_news.id{% endtrans %}</th>
-                <th>{% trans %}btn_news.title{% endtrans %}</th>
-                <th>{% trans %}btn_news.category{% endtrans %}</th>
-                <th>{% trans %}btn_news.updated_at{% endtrans %}</th>
-                <th class="{{ lst.col_act_class }}">{% trans %}btn_admin.actions{% endtrans %}</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in pagination %}
-            <tr>
-                <td class="{{ lst.col_id_class() }}">{{ entity.id }}</td>
-                <td>{{ entity.title }}</td>
-                <td>{{ entity.category }}</td>
-                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td class="{{ lst.col_act_class }}">
-                    {{ lnk.edit('btn_news_newscontrol_edit', { id: entity.id }) }}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
-
-{% block list_pagination %}
-    {{ knp_pagination_render(pagination) }}
-{% endblock %}
-
-{% block list_buttons %}
-    {{ lnk.add('btn_news_newscontrol_new') }}
+{% block list_table_body_columns %}
+    <td>{{ entity.title }}</td>
+    <td>{{ entity.category }}</td>
+    <td>
+        {% if entity.createdat %}
+            {{ entity.createdat|date(btn_admin.list.date_time_format) }}
+        {% endif %}
+    </td>
 {% endblock %}

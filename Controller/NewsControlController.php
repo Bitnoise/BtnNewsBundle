@@ -2,103 +2,14 @@
 
 namespace Btn\NewsBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Btn\AdminBundle\Controller\AbstractControlController;
+use Btn\AdminBundle\Controller\BaseCrudController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Btn\AdminBundle\Annotation\EntityProvider;
+use Btn\AdminBundle\Annotation\Crud;
 
 /**
  * @Route("/news")
- * @EntityProvider("btn_news.provider.news")
+ * @Crud()
  */
-class NewsControlController extends AbstractControlController
+class NewsControlController extends BaseCrudController
 {
-    /**
-     * @Route("/", name="btn_news_newscontrol_index")
-     * @Template()
-     */
-    public function indexAction(Request $request)
-    {
-        $repo     = $this->getEntityProvider()->getRepository();
-        $entities = $repo->findAll();
-
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $entities,
-            $request->query->getInt('page', 1),
-            $this->getPerPage()
-        );
-
-        return array(
-            'pagination'  => $pagination,
-        );
-    }
-
-    /**
-     * @Route("/new", name="btn_news_newscontrol_new", requirements={"id" = "\d+"}, methods={"GET"})
-     * @Route("/create", name="btn_news_newscontrol_create", requirements={"id" = "\d+"}, methods={"POST"})
-     * @Template()
-     */
-    public function createAction(Request $request)
-    {
-        $entity = $this->getEntityProvider()->create();
-
-        $form = $this->createForm('btn_news_form_news_control', $entity, array(
-            'action' => $this->generateUrl('btn_news_newscontrol_create'),
-        ));
-
-        if ($this->handleForm($form, $request)) {
-            $this->setFlash('btn_admin.flash.created');
-
-            return $this->redirect($this->generateUrl('btn_news_newscontrol_edit', array('id' => $entity->getId())));
-        }
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * @Route("/{id}/edit", name="btn_news_newscontrol_edit", requirements={"id" = "\d+"}, methods={"GET"})
-     * @Route("/{id}/update", name="btn_news_newscontrol_update", requirements={"id" = "\d+"}, methods={"POST"}))
-     * @Template()
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $entity = $this->findEntityOr404($this->getEntityProvider()->getClass(), $id);
-
-        $form = $this->createForm('btn_news_form_news_control', $entity, array(
-            'action' => $this->generateUrl('btn_news_newscontrol_update', array('id' => $id)),
-        ));
-
-        if ($this->handleForm($form, $request)) {
-            $this->setFlash('btn_admin.flash.updated');
-
-            return $this->redirect($this->generateUrl('btn_news_newscontrol_edit', array('id' => $id)));
-        }
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * @Route("/{id}/delete/{csrf_token}", name="btn_news_newscontrol_delete", requirements={"id" = "\d+"}, methods={"GET"})
-     */
-    public function deleteAction(Request $request, $id, $csrf_token)
-    {
-        $this->validateCsrfTokenOrThrowException('btn_news_newscontrol_delete', $csrf_token);
-
-        $entityProvider = $this->getEntityProvider();
-        $entity         = $this->findEntityOr404($id, $entityProvider->getClass());
-
-        $entityProvider->delete($entity);
-
-        $this->setFlash('btn_admin.flash.deleted');
-
-        return $this->redirect($this->generateUrl('btn_news_newscontrol_index'));
-    }
 }
