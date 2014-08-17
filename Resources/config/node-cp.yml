@@ -1,6 +1,8 @@
+parameters:
+    btn_news.provider.node_content.class: Btn\NewsBundle\Provider\NodeContentProvider
+
 services:
-    btn_news.node_content_provider:
-        class: Btn\NewsBundle\Service\NodeContentProvider
+    btn_news.provider.node_content:
+        class: %btn_news.provider.node_content.class%
         arguments:
-            router: @router
             provider: @btn_news.provider.news_category
