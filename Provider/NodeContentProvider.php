@@ -2,7 +2,7 @@
 
 namespace Btn\NewsBundle\Provider;
 
-use Btn\NodesBundle\Provider\NodeContentProviderInterface;
+use Btn\NodeBundle\Provider\NodeContentProviderInterface;
 use Btn\NewsBundle\Form\NodeContentType;
 use Btn\BaseBundle\Provider\EntityProviderInterface;
 
