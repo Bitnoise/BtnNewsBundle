@@ -1,6 +1,6 @@
 <?php
 
-namespace Btn\NewsBundle\Repository;
+namespace Btn\NewsBundle\Model;
 
 use Doctrine\ORM\EntityRepository;
 

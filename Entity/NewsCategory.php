@@ -3,6 +3,7 @@
 namespace Btn\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Btn\NewsBundle\Model\AbstractNewsCategory;
 
 /**
  * @ORM\Table(name="btn_news_category", indexes={

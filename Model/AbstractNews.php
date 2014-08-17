@@ -1,6 +1,6 @@
 <?php
 
-namespace Btn\NewsBundle\Entity;
+namespace Btn\NewsBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -171,7 +171,7 @@ abstract class AbstractNews implements NewsInterface
     /**
      * Set category
      *
-     * @param  \Btn\NewsBundle\Entity\NewsCategoryInterface $category
+     * @param  \Btn\NewsBundle\Model\NewsCategoryInterface $category
      * @return News
      */
     public function setCategory(NewsCategoryInterface $category = null)
@@ -184,7 +184,7 @@ abstract class AbstractNews implements NewsInterface
     /**
      * Get category
      *
-     * @return \Btn\NewsBundle\Entity\NewsCategoryInterface
+     * @return \Btn\NewsBundle\Model\NewsCategoryInterface
      */
     public function getCategory()
     {

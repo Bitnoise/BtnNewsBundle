@@ -1,10 +1,10 @@
 <?php
 
-namespace Btn\NewsBundle\Repository;
+namespace Btn\NewsBundle\Model;
 
 use Doctrine\ORM\EntityRepository;
-use Btn\NewsBundle\Entity\News;
-use Btn\NewsBundle\Entity\NewsCategoryInterface;
+use Btn\NewsBundle\Model\NewsInterface;
+use Btn\NewsBundle\Model\NewsCategoryInterface;
 
 /**
  *

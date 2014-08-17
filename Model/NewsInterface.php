@@ -1,6 +1,6 @@
 <?php
 
-namespace Btn\NewsBundle\Entity;
+namespace Btn\NewsBundle\Model;
 
 interface NewsInterface
 {

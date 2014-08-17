@@ -1,6 +1,6 @@
 <?php
 
-namespace Btn\NewsBundle\Entity;
+namespace Btn\NewsBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
