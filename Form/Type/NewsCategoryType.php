@@ -45,6 +45,6 @@ class NewsCategoryType extends AbstractType
      */
     public function getName()
     {
-        return 'btn_newscategory';
+        return 'btn_news_category';
     }
 }

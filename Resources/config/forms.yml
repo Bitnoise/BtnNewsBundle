@@ -1,6 +1,11 @@
-services:
+parameters:
+    btn_news.form.news_control.class: Btn\NewsBundle\Form\NewsControlForm
+    btn_news.form.news_category_control.class: Btn\NewsBundle\Form\NewsCategoryControlForm
+    btn_news.form.type.news_category.class: Btn\NewsBundle\Form\Type\NewsCategoryType
 
+services:
     btn_news.form.news_control:
+        parent: btn_admin.form.abstract
         class: %btn_news.form.news_control.class%
         calls:
             - [setClass, ['%btn_news.news.class%']]
@@ -8,16 +13,16 @@ services:
             - { name: form.type, alias: btn_news_form_news_control }
 
     btn_news.form.news_category_control:
+        parent: btn_admin.form.abstract
         class: %btn_news.form.news_category_control.class%
         calls:
             - [setClass, ['%btn_news.news_category.class%']]
         tags:
-            - { name: form.type, alias: btn_news_form_newscategorycontrol }
+            - { name: form.type, alias: btn_news_form_news_category_control }
 
     btn_news.form.type.news_category:
         class: %btn_news.form.type.news_category.class%
         calls:
             - [setClass, ['%btn_news.news_category.class%']]
-            # - [setEntityManager, ['@doctrine.orm.entity_manager']]
         tags:
-            - { name: form.type, alias: btn_newscategory }
+            - { name: form.type, alias: btn_news_category }

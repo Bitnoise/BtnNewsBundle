@@ -9,24 +9,26 @@ class NewsControlForm extends AbstractForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
+
         $builder
             ->add('slug', null, array(
-                'label' => 'btn_news.slug',
+                'label' => 'btn_news.news.slug',
             ))
             ->add('title', null, array(
-                'label' => 'btn_news.title',
+                'label' => 'btn_news.news.title',
             ))
             ->add('preview', null, array(
-                'label' => 'btn_news.preview',
+                'label' => 'btn_news.news.preview',
             ))
             ->add('text', null, array(
-                'label' => 'btn_news.text',
+                'label' => 'btn_news.news.text',
             ))
-            ->add('category', 'btn_newscategory', array(
-                'label' => 'btn_news.category',
+            ->add('category', 'btn_news_category', array(
+                'label' => 'btn_news.news.category',
             ))
             ->add('created_at', 'date', array(
-                'label' => 'btn_news.created_at',
+                'label' => 'btn_news.news.created_at',
             ))
             ->add('save', $options['data']->getId() ? 'btn_save' : 'btn_create')
         ;

@@ -9,6 +9,8 @@ class NewsCategoryControlForm extends AbstractForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
+
         $builder
             ->add('title', null, array(
                 'label' => 'btn_news.news_category.title',
