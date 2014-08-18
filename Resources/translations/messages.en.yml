@@ -1,5 +1,7 @@
 btn_news.newscontrol_index: 'News list'
-btn_news.newscontrol_create: 'News add'
+btn_news.newscontrol_new: 'News new'
+btn_news.newscontrol_create: 'News create'
+btn_news.newscontrol_edit: 'News edit'
 btn_news.newscontrol_update: 'News edit'
 
 btn_news.news.slug: 'Slug'
@@ -11,8 +13,10 @@ btn_news.news.category.empty_value: 'Select category'
 btn_news.news.created_at: 'Created at'
 
 btn_news.newscategorycontrol_index: 'News category list'
-btn_news.newscategorycontrol_create: 'News category add'
-btn_news.newscategorycontrol_update: 'News category edit'
+btn_news.newscategorycontrol_new: 'News category new'
+btn_news.newscategorycontrol_create: 'News category create'
+btn_news.newscategorycontrol_edit: 'News category edit'
+btn_news.newscategorycontrol_update: 'News category update'
 
 btn_news.news_category.title: 'Title'
 btn_news.news_category.slug: 'Slug'
