@@ -59,6 +59,14 @@ abstract class AbstractNews implements NewsInterface
     protected $created_at;
 
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+    }
+
+    /**
      * Get id
      *
      * @return integer
