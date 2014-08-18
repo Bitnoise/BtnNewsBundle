@@ -15,7 +15,7 @@ class NewsCategoryControlForm extends AbstractForm
             ->add('title', null, array(
                 'label' => 'btn_news.news_category.title',
             ))
-            ->add('slug', null, array(
+            ->add('slug', 'btn_slug', array(
                 'label' => 'btn_news.news_category.slug',
             ))
             ->add('visible', null, array(

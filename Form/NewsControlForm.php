@@ -12,11 +12,11 @@ class NewsControlForm extends AbstractForm
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('slug', null, array(
-                'label' => 'btn_news.news.slug',
-            ))
             ->add('title', null, array(
                 'label' => 'btn_news.news.title',
+            ))
+            ->add('slug', 'btn_slug', array(
+                'label' => 'btn_news.news.slug',
             ))
             ->add('preview', null, array(
                 'label' => 'btn_news.news.preview',
