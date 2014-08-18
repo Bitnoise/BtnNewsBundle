@@ -30,6 +30,6 @@ class NewsCategoryControlForm extends AbstractForm
 
     public function getName()
     {
-        return 'btn_news_form_newscategorycontrol';
+        return 'btn_news_form_news_category_control';
     }
 }
