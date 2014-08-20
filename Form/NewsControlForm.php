@@ -30,7 +30,6 @@ class NewsControlForm extends AbstractForm
             ->add('created_at', 'btn_datetime', array(
                 'label' => 'btn_news.news.created_at',
             ))
-            ->add('save', $options['data']->getId() ? 'btn_save' : 'btn_create')
         ;
     }
 

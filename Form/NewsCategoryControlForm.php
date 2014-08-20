@@ -24,7 +24,6 @@ class NewsCategoryControlForm extends AbstractForm
             ->add('position', null, array(
                 'label' => 'btn_news.news_category.position',
             ))
-            ->add('save', $options['data']->getId() ? 'btn_save' : 'btn_create')
         ;
     }
 
