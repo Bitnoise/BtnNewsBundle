@@ -6,10 +6,7 @@ use Btn\NodeBundle\Provider\NodeContentProviderInterface;
 use Btn\NewsBundle\Form\NodeContentType;
 use Btn\BaseBundle\Provider\EntityProviderInterface;
 
-/**
- *
- */
-class NodeContentProvider implements NodeContentProviderInterface
+class NewsCategoryNodeContentProvider implements NodeContentProviderInterface
 {
     /** $var \Btn\BaseBundle\Provider\EntityProviderInterface $provider */
     protected $provider;
@@ -74,6 +71,6 @@ class NodeContentProvider implements NodeContentProviderInterface
      */
     public function getName()
     {
-        return 'btn_news.node_content_provider.name';
+        return 'btn_news.news_node_content_provider.name';
     }
 }
