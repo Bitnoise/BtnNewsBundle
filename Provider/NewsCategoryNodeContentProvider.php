@@ -22,6 +22,14 @@ class NewsCategoryNodeContentProvider implements NodeContentProviderInterface
     /**
      *
      */
+    public function isEnabled()
+    {
+        return true;
+    }
+
+    /**
+     *
+     */
     public function getForm()
     {
         $categories = $this->provider->getRepository()->findAll();
