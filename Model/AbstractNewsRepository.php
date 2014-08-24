@@ -3,8 +3,6 @@
 namespace Btn\NewsBundle\Model;
 
 use Doctrine\ORM\EntityRepository;
-use Btn\NewsBundle\Model\NewsInterface;
-use Btn\NewsBundle\Model\NewsCategoryInterface;
 
 /**
  *
