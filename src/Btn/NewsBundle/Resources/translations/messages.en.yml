@@ -25,3 +25,7 @@ btn_news.news_category.position: 'Position'
 
 btn_news.type.news_category.empty_value: 'Choose news category'
 btn_news.type.news_category.label: 'News category'
+
+btn_news.menu_navbar.news_section: 'News'
+btn_news.menu_navbar.news_section.news_item: 'Posts'
+btn_news.menu_navbar.news_section.newscategory_item: 'Categories'
