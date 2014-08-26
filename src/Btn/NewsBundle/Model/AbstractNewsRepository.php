@@ -65,8 +65,8 @@ abstract class AbstractNewsRepository extends EntityRepository
             ->groupBy('year, month')
         ;
 
-        if (null != $category) {
-            $qb->addWhere('n.category = :category')->setParameter(':category', $category);
+        if (null !== $category) {
+            $qb->andWhere('n.category = :category')->setParameter(':category', $category);
         }
 
         $q = $qb->getQuery();
@@ -83,8 +83,8 @@ abstract class AbstractNewsRepository extends EntityRepository
             ->where('n.created_at LIKE :date')->setParameter(':date', $year . '-' . $month . '%')
         ;
 
-        if (null != $category) {
-            $qb->addWhere('n.category = :category')->setParameter(':category', $category);
+        if (null !== $category) {
+            $qb->andWhere('n.category = :category')->setParameter(':category', $category);
         }
 
         return $qb;
