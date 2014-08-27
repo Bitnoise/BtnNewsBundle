@@ -41,9 +41,9 @@ class NewsController extends Controller
         $backUrl = $this->generateUrl('news');
 
         //resolve back to list url
-        if ($url = $this->get('session')->get('_btn_slug')) {
+        if ($url = $this->get('session')->get('_btn_node')) {
 
-            $backUrl = $this->generateUrl('_btn_slug', array('url' => $url));
+            $backUrl = $this->generateUrl('_btn_node', array('url' => $url));
         }
 
         return array('news' => $news, 'backUrl' => $backUrl);
