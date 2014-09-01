@@ -23,7 +23,10 @@ abstract class AbstractNews implements NewsInterface
      * @var string $slug
      *
      * @ORM\Column(name="slug", type="string", length=255)
-     * @Assert\Regex(pattern="/^[_\-a-z0-9]+$/", message="Slug contains only digits, small letters and chars like '-', '_'")
+     * @Assert\Regex(
+     *     pattern="/^[_\-a-z0-9]+$/",
+     *     message="Slug contains only digits, small letters and chars like '-', '_'"
+     * )
      * @Assert\NotBlank()
      */
     protected $slug;

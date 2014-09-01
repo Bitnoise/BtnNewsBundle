@@ -26,4 +26,3 @@ services:
         scope: request
         tags:
             - { name: btn_admin.menu_item , parent: btn_news.menu_navbar.news_section }
-
