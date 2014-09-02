@@ -135,7 +135,7 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
      *
      * @return boolean
      */
-    public function getVisible()
+    public function isVisible()
     {
         return $this->visible;
     }
@@ -166,10 +166,10 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
     /**
      * Add news
      *
-     * @param  \Btn\NewsBundle\Entity\News $news
+     * @param  \Btn\NewsBundle\Model\NewsInterface $news
      * @return newsCategory
      */
-    public function addNews(\Btn\NewsBundle\Entity\News $news)
+    public function addNews(NewsInterface $news)
     {
         $this->news[] = $news;
 
@@ -179,9 +179,9 @@ abstract class AbstractNewsCategory implements NewsCategoryInterface
     /**
      * Remove news
      *
-     * @param \Btn\NewsBundle\Entity\News $news
+     * @param \Btn\NewsBundle\Model\NewsInterface $news
      */
-    public function removeNews(\Btn\NewsBundle\Entity\News $news)
+    public function removeNews(NewsInterface $news)
     {
         $this->news->removeElement($news);
     }

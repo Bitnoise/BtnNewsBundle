@@ -42,7 +42,6 @@ class NewsController extends Controller
 
         //resolve back to list url
         if ($url = $this->get('session')->get('_btn_node')) {
-
             $backUrl = $this->generateUrl('_btn_node', array('url' => $url));
         }
 
