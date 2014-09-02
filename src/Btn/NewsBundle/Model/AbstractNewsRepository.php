@@ -61,7 +61,9 @@ abstract class AbstractNewsRepository extends EntityRepository
     public function getMonthsWithYears(NewsCategoryInterface $category = null)
     {
         $qb = $this->getBaseQueryBuilder()
-            ->select('SUBSTRING(n.created_at, 6, 2) as month, SUBSTRING(n.created_at, 1, 4) as year, COUNT(n.id) as length')
+            ->select(
+                'SUBSTRING(n.created_at, 6, 2) as month, SUBSTRING(n.created_at, 1, 4) as year, COUNT(n.id) as length'
+            )
             ->groupBy('year, month')
         ;
 
