@@ -201,4 +201,12 @@ abstract class AbstractNews implements NewsInterface
     {
         return $this->category;
     }
+
+    /**
+     *
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }
