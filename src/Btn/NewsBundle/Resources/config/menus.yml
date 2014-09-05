@@ -7,7 +7,7 @@ services:
         arguments: ["@request", "btn_news.menu_navbar.news_section", "btn_news_newscontrol_index", [], []]
         scope: request
         tags:
-            - { name: btn_admin.menu_item , parent: btn_admin.menu_navbar }
+            - { name: btn_admin.menu_item , parent: btn_admin.menu_navbar.modules }
 
     btn_news.menu_navbar.news_section.news_item:
         class: %btn_admin.menu_item.class%
