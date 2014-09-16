@@ -21,7 +21,7 @@ class NewsControlForm extends AbstractForm
             ->add('preview', null, array(
                 'label' => 'btn_news.news.preview',
             ))
-            ->add('text', null, array(
+            ->add('text', 'btn_wysiwyg', array(
                 'label' => 'btn_news.news.text',
             ))
             ->add('category', 'btn_news_category', array(
