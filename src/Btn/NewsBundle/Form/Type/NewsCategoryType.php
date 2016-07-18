@@ -3,13 +3,22 @@
 namespace Btn\NewsBundle\Form\Type;
 
 use Btn\AdminBundle\Form\Type\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 
 class NewsCategoryType extends AbstractType
 {
     /**
-     *
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        parent::buildForm($builder, $options);
+    }
+    
+    /**
+     * {@inheritdoc}
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
@@ -37,7 +46,7 @@ class NewsCategoryType extends AbstractType
      */
     public function getParent()
     {
-        return 'entity';
+        return 'btn_select2_entity';
     }
 
     /**

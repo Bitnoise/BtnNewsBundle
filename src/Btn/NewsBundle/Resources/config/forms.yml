@@ -2,6 +2,7 @@ parameters:
     btn_news.form.news_control.class: Btn\NewsBundle\Form\NewsControlForm
     btn_news.form.news_category_control.class: Btn\NewsBundle\Form\NewsCategoryControlForm
     btn_news.form.type.news_category.class: Btn\NewsBundle\Form\Type\NewsCategoryType
+    btn_news.form.filter.news.class: Btn\NewsBundle\Form\Filter\NewsFilterForm
 
 services:
     btn_news.form.news_control:
@@ -26,3 +27,7 @@ services:
             - [setClass, ['%btn_news.news_category.class%']]
         tags:
             - { name: form.type, alias: btn_news_category }
+
+    btn_news.form.filter.news:
+        public: false
+        class:  %btn_news.form.filter.news.class%

@@ -11,6 +11,8 @@ btn_news.news.text: 'Text'
 btn_news.news.category: 'Category'
 btn_news.news.category.empty_value: 'Select category'
 btn_news.news.created_at: 'Created at'
+btn_news.news.keyword: 'Keyword'
+btn_news.news.type_here: 'Type here'
 
 btn_news.newscategorycontrol_index: 'News category list'
 btn_news.newscategorycontrol_new: 'News category new'

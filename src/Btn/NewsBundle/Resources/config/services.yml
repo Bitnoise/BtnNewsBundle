@@ -1,3 +1,6 @@
+parameters:
+    btn_news.filter.news.class: Btn\NewsBundle\Filter\NewsFilter
+
 services:
     btn_news.provider.news:
         class: %btn_base.provider.entity.class%
@@ -8,3 +11,10 @@ services:
         class: %btn_base.provider.entity.class%
         parent: btn_base.provider.abstract_entity
         arguments: ['%btn_news.news_category.class%']
+
+    btn_news.filter.news:
+        class: %btn_news.filter.news.class%
+        parent: btn_base.filter.abstract_request_filter
+        scope: request
+        calls:
+            - [setType, [@btn_news.form.filter.news]]
